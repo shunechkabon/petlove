@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage/MainPage"; 
 import AddPetPage from "./pages/AddPetPage/AddPetPage";
 import HomePage from "./pages/HomePage/HomePage";
@@ -15,24 +15,22 @@ import Layout from "./components/Layout/Layout";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<MainPage />} />
+    <Routes>
+      <Route path="/" element={<MainPage />} />
 
-        <Route element={<Layout />}>
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/news" element={<NewsPage />} />
-          <Route path="/notices" element={<NoticesPage />} />
-          <Route path="/friends" element={<OurFriendsPage />} />
-          <Route path="/register" element={<RegistrationPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/add-pet" element={<AddPetPage />} />
-        </Route>
+      <Route element={<Layout />}>
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/news" element={<NewsPage />} />
+        <Route path="/notices" element={<NoticesPage />} />
+        <Route path="/friends" element={<OurFriendsPage />} />
+        <Route path="/register" element={<RegistrationPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/add-pet" element={<AddPetPage />} />
+      </Route>
 
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </Router>
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 }
 

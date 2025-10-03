@@ -1,0 +1,36 @@
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    /* backdrop-filter: blur(2px); */
+    display: grid;
+    place-items: center;
+    z-index: 9999;
+}
+
+.box {
+    position: relative;
+    width: min(92vw, 960px);
+}
+
+.ringWrap {
+    position: relative;
+    width: 396px;
+    height: 396px;
+    margin-inline: auto;
+}
+
+.value {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 80px;
+    color: #FFFFFF;
+    line-height: 80px;
+        /* 100% */
+    letter-spacing: -3.2px;
+    text-align: center;
+    user-select: none;
+}
