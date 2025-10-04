@@ -1,0 +1,30 @@
+.logo {
+    --logo-color: var(--color-text);
+    --logo-text-size: 28px;
+    --logo-icon-w: 18px;
+    --logo-icon-h: 16px;
+    --logo-gap: 2px;
+    --logo-icon-color: var(--color-accent);
+
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--logo-color);
+}
+
+.text {
+    font-family: var(--font-family);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.2px;
+    font-size: var(--logo-text-size);
+}
+
+.icon {
+    width: var(--logo-icon-w);
+    height: var(--logo-icon-h);
+    color: var(--logo-icon-color);
+    fill: currentColor;
+    margin: 0 var(--logo-gap);
+    vertical-align: middle;
+}

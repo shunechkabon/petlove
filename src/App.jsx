@@ -16,6 +16,7 @@ import Layout from "./components/Layout/Layout";
 function App() {
   return (
     <Routes>
+      {/* Splash-page */}
       <Route path="/" element={<MainPage />} />
 
       <Route element={<Layout />}>

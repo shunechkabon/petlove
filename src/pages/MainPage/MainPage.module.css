@@ -1,0 +1,58 @@
+.wrapSplash {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 65% center;
+    background-image: image-set(
+        url('/src/assets/splash-bg.jpg') 1x,
+        url('/src/assets/splash-bg@2x.jpg') 2x
+    );
+    z-index: 0;
+    /* overflow: hidden; */
+}
+
+.wrapSplash::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.logoSplash,
+.loaderWrap {
+    position: relative;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.logoSplash {
+    --logo-color: var(--color-text-secondary);
+    --logo-text-size: 50px;
+    --logo-icon-w: 36px;
+    --logo-icon-h: 30px;
+    --logo-gap: 4px;
+
+    transition: transform 0.4s ease;
+}
+
+.logoSplash:hover {
+    transform: scale(1.04);
+}
+
+@media screen and (min-width: 768px) {
+    .logoSplash {
+        --logo-text-size: 100px;
+        --logo-icon-w: 66px;
+        --logo-icon-h: 58px;
+        --logo-gap: 8px;
+    }
+
+    .wrapSplash {
+        background-position: center;
+    }
+}
