@@ -1,17 +1,17 @@
-const Icon = ({ name, width = 20, height = 20, className = "", style = {} }) => {
+const Icon = ({ name, width, height, className = "", style = {} }) => {
     if (!name) return null;
 
-    const spritePath = `${import.meta.env.BASE_URL}icons.svg`;
+    const svgProps = { className, style: { ...style }, "aria-hidden": true };
+
+    if (typeof width === "number") svgProps.width = width;
+    else if (width) svgProps.style.width = width;
+
+    if (typeof height === "number") svgProps.height = height;
+    else if (height) svgProps.style.height = height;
 
     return (
-        <svg
-            width={width}
-            height={height}
-            style={style}
-            className={className}
-            aria-hidden="true"
-        >
-            <use href={`${spritePath}#${name}`} />
+        <svg {...svgProps}>
+            <use href={`#icon-${name}`} />
         </svg>
     );
 };

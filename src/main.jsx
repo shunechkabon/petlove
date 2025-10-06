@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import { BrowserRouter } from 'react-router-dom';
+import 'virtual:svg-icons-register';
 import 'modern-normalize';
 import './index.css';
 import App from './App.jsx';
