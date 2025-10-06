@@ -19,7 +19,7 @@ const Logo = ({ className = "", style = {}, onClick }) => {
                     height="var(--logo-icon-h)"
                     className={s.icon}
                 />
-                ove
+                ve
             </span>
         </Link>
     );
