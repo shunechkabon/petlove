@@ -1,10 +1,24 @@
+.header {
+    padding: 10px 0 0;
+}
+
+.homeHeader {
+    padding: 10px 20px 0;
+}
+
 .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 335px;
-    padding: 28px 0 20px;
+    max-width: 375px;
+    padding: 18px 20px 0;
     margin: 0 auto;
+}
+
+.homeContainer {
+    background-color: var(--color-accent);
+    border-radius: 30px 30px 0 0;
+    max-width: 335px;
 }
 
 .logoHeader {
@@ -14,16 +28,42 @@
     --logo-gap: 2px;
 }
 
-.navList {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+.homeLogo {
+    --logo-icon-color: var(--color-text-secondary);
+    --logo-color: var(--color-text-secondary);
+}
+
+.navInline,
+.authInline {
+    display: none;
+}
+
+.homeBurger {
+    --burger-icon-color: var(--color-text-secondary);
 }
 
 @media screen and (min-width: 768px) {
+    .header {
+        padding: 16px 0 0;
+    }
+    
+    .homeHeader {
+        padding: 16px 32px 0;
+    }
+    
     .container {
+        max-width: 768px;
+        padding: 16px 32px 0;
+    }
+
+    .homeContainer {
         max-width: 704px;
-        padding: 32px 0;
+    }
+
+    .right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
     }
 
     .logoHeader {
@@ -31,11 +71,46 @@
         --logo-icon-w: 18px;
         --logo-icon-h: 16px;
     }
+
+    .authInline {
+        display: flex;
+    }
+
+    .homeAuth {
+        --auth-login-border: 1px solid rgba(255, 255, 255, 0.40);
+        --auth-login-hover: var(--color-accent-light);
+        --auth-login-hover-color: var(--color-accent);
+    }
 }
 
 @media screen and (min-width: 1280px) {
     .container {
+        max-width: 1280px;
+        padding: 16px 64px 0;
+    }
+
+    .homeContainer {
         max-width: 1216px;
-        padding: 32px;
+    }
+
+    .homeNav {
+        --menu-link-color: var(--color-text-secondary);
+        --menu-link-border: 1px solid rgba(255, 255, 255, 0.40);
+        --menu-link-hover-bg: var(--color-accent-light);
+        --menu-link-hover-border: 1px solid var(--color-accent-light);
+        --menu-link-hover-color: var(--color-accent);
+    }
+
+    .right {
+        gap: 0;
+    }
+
+    .authInline {
+        margin-left: 142px;
+    }
+
+    .navInline,
+    .authInline {
+        display: flex;
     }
 }

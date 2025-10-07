@@ -1,4 +1,8 @@
 .authNav {
+    --auth-login-border: none;
+    --auth-login-hover: var(--color-accent-hover);
+    --auth-login-hover-color: var(--color-text-secondary);
+
     display: flex;
     align-items: center;
     gap: 8px;
@@ -9,6 +13,7 @@
     font-weight: 700;
     text-decoration: none;
     border-radius: 30px;
+    border: var(--auth-login-border);
     
     color: var(--color-text-secondary);
     padding: 15px 35px;
@@ -18,7 +23,8 @@
 
 .logIn:hover,
 .activeLogIn {
-    background-color: var(--color-accent-hover);
+    background-color: var(--auth-login-hover);
+    color: var(--auth-login-hover-color);
 }
 
 .register {

@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 import s from "./AuthNav.module.css";
 
-const AuthNav = () => {
+const AuthNav = ({ className = "" }) => {
     return (
-        <nav className={s.authNav} aria-label="Auth">
+        <nav className={`${s.authNav} ${className}`} aria-label="Auth">
             <NavLink
                 to="/login"
                 className={({ isActive }) => `${s.logIn} ${isActive ? s.activeLogIn : ""}`}

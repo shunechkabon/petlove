@@ -1,4 +1,10 @@
 .menu {
+    --menu-link-color: var(--color-text);
+    --menu-link-border: 1px solid rgba(38, 38, 38, 0.15);
+    --menu-link-hover-bg: var(--color-bg);
+    --menu-link-hover-color: var(--color-text);
+    --menu-link-hover-border: 1px solid var(--color-accent);
+
     display: flex;
     gap: 10px;
 }
@@ -7,18 +13,20 @@
     font-size: 16px;
     font-weight: 500;
     text-decoration: none;
-    color: var(--color-text);
+    color: var(--menu-link-color);
 
     padding: 15px 20px;
     border-radius: 30px;
-    border: 1px solid rgba(38, 38, 38, 0.15);
-    transition: border .3s ease;
+    border: var(--menu-link-border);
+    transition: all .3s ease;
 }
 
 .link:hover {
-    border: 1px solid var(--color-accent);
+    border: var(--menu-link-hover-border);
+    background-color: var(--menu-link-hover-bg);
+    color: var(--menu-link-hover-color);
 }
 
 .active {
-    border: 1px solid var(--color-accent);
+    border: var(--menu-link-hover-border);
 }
