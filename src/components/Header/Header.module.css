@@ -4,6 +4,16 @@
 
 .homeHeader {
     padding: 10px 20px 0;
+
+    --menu-link-color: var(--color-text-secondary);
+    --menu-link-border: 1px solid rgba(255, 255, 255, 0.40);
+    --menu-link-hover-bg: var(--color-accent-light);
+    --menu-link-hover-border: 1px solid var(--color-accent-light);
+    --menu-link-hover-color: var(--color-accent);
+
+    --auth-login-border: 1px solid rgba(255, 255, 255, 0.40);
+    --auth-login-hover: var(--color-accent-light);
+    --auth-login-hover-color: var(--color-accent);
 }
 
 .container {
@@ -38,8 +48,39 @@
     display: none;
 }
 
+.right {
+    display: flex;
+    align-items: center;
+}
+
+.burgerBtn {
+    border: none;
+    background-color: transparent;
+    width: 32px;
+    height: 32px;
+}
+
+.burgerIcon {
+    color: var(--color-text);
+}
+
+.homeBurgerIcon {
+    color: var(--color-text-secondary);
+}
+
 .homeBurger {
-    --burger-icon-color: var(--color-text-secondary);
+    --burger-bg: var(--color-text-secondary);
+    --burger-icon: var(--color-text);
+
+    --menu-link-color: var(--color-text);
+    --menu-link-border: 1px solid rgba(38, 38, 38, 0.15);
+    --menu-link-hover-bg: var(--color-text-secondary);
+    --menu-link-hover-border: 1px solid var(--color-accent);
+    --menu-link-hover-color: var(--color-text);
+    
+    --auth-login-border: none;
+    --auth-login-hover: var(--color-accent-hover);
+    --auth-login-hover-color: var(--color-text-secondary);
 }
 
 @media screen and (min-width: 768px) {
@@ -61,8 +102,6 @@
     }
 
     .right {
-        display: flex;
-        align-items: center;
         gap: 16px;
     }
 
@@ -76,11 +115,11 @@
         display: flex;
     }
 
-    .homeAuth {
+    /* .homeAuth {
         --auth-login-border: 1px solid rgba(255, 255, 255, 0.40);
         --auth-login-hover: var(--color-accent-light);
         --auth-login-hover-color: var(--color-accent);
-    }
+    } */
 }
 
 @media screen and (min-width: 1280px) {
@@ -93,13 +132,13 @@
         max-width: 1216px;
     }
 
-    .homeNav {
+    /* .homeNav {
         --menu-link-color: var(--color-text-secondary);
         --menu-link-border: 1px solid rgba(255, 255, 255, 0.40);
         --menu-link-hover-bg: var(--color-accent-light);
         --menu-link-hover-border: 1px solid var(--color-accent-light);
         --menu-link-hover-color: var(--color-accent);
-    }
+    } */
 
     .right {
         gap: 0;
@@ -112,5 +151,9 @@
     .navInline,
     .authInline {
         display: flex;
+    }
+
+    .burgerBtn {
+        display: none;
     }
 }

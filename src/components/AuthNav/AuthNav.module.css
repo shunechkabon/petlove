@@ -1,11 +1,8 @@
 .authNav {
-    --auth-login-border: none;
-    --auth-login-hover: var(--color-accent-hover);
-    --auth-login-hover-color: var(--color-text-secondary);
-
     display: flex;
     align-items: center;
     gap: 8px;
+    flex-direction: var(--auth-fl-d, row);
 }
 
 .logIn {
@@ -13,8 +10,12 @@
     font-weight: 700;
     text-decoration: none;
     border-radius: 30px;
-    border: var(--auth-login-border);
+    border: var(--auth-login-border, none);
     
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--auth-link-w, auto);
     color: var(--color-text-secondary);
     padding: 15px 35px;
     background-color: var(--color-accent);
@@ -23,8 +24,8 @@
 
 .logIn:hover,
 .activeLogIn {
-    background-color: var(--auth-login-hover);
-    color: var(--auth-login-hover-color);
+    background-color: var(--auth-login-hover, var(--color-accent-hover));
+    color: var(--auth-login-hover-color, var(--color-text-secondary));
 }
 
 .register {
@@ -33,6 +34,10 @@
     text-decoration: none;
     border-radius: 30px;
     
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--auth-link-w, auto);
     color: var(--color-accent);
     padding: 15px 20px;
     background-color: var(--color-accent-light);

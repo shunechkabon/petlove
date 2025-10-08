@@ -1,61 +1,53 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import s from "./Burger.module.css";
 import Icon from "../Icon/Icon";
 import Nav from "../Nav/Nav";
 import AuthNav from "../AuthNav/AuthNav";
 
-const Burger = ({ className = "" }) => {
-    const [open, setOpen] = useState(false);
-
+const Burger = ({ className = "", open, onClose }) => {
     useEffect(() => {
-        const onKey = (e) => e.key === "Escape" && setOpen(false);
+        const onKey = (e) => e.key === "Escape" && onClose();
         document.addEventListener("keydown", onKey);
         document.body.style.overflow = open ? "hidden" : "";
         return () => {
             document.removeEventListener("keydown", onKey);
             document.body.style.overflow = "";
         };
-    }, [open]);
+    }, [open, onClose]);
 
     const closeOnLink = (e) => {
-        if (e.target.closest("a")) setOpen(false);
+        if (e.target.closest("a")) onClose();
     };
+
+    if (!open) return null;
 
     return (
         <div className={`${s.burger} ${className}`}>
-            <button
-                type="button"
-                className={s.btn}
-                aria-label={open ? "Close menu" : "Open menu"}
-                aria-expanded={open}
-                aria-controls="mobile-menu"
-                onClick={() => setOpen((v) => !v)}
+            <div className={s.backdrop} onClick={onClose} />
+            <div
+                id="mobile-menu"
+                className={s.panel}
+                role="dialog"
+                aria-modal="true"
+                onClickCapture={closeOnLink}
             >
-                {open ?
+                <button
+                    type="button"
+                    className={s.closeBtn}
+                    aria-label="Close menu"
+                    onClick={onClose}
+                >
                     <Icon
                         name="cross"
-                        width="var(--burger-icon-w)"
-                        height="var(--burger-icon-h)"
-                        className={s.icon}
-                    /> :
-                    <Icon
-                        name="menu"
-                        width="var(--burger-icon-w)"
-                        height="var(--burger-icon-h)"
+                        width="32"
+                        height="32"
                         className={s.icon}
                     />
-                }
-            </button>
+                </button>
 
-            {open && (
-                <>
-                    <div className={s.backdrop} onClick={() => setOpen(false)} />
-                    <div id="mobile-menu" className={s.panel} onClickCapture={closeOnLink}>
-                        <Nav />
-                        <AuthNav />
-                    </div>
-                </>
-            )}
+                <Nav className={s.nav} />
+                <AuthNav className={s.authNav} />
+            </div>
         </div>
     );
 };
