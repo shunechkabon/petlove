@@ -5,17 +5,20 @@
     flex-direction: var(--auth-fl-d, row);
 }
 
-.logIn {
+.link {
     font-size: 16px;
     font-weight: 700;
     text-decoration: none;
     border-radius: 30px;
-    border: var(--auth-login-border, none);
     
     display: flex;
     justify-content: center;
     align-items: center;
     width: var(--auth-link-w, auto);
+}
+
+.logIn {
+    border: var(--auth-login-border, none);
     color: var(--color-text-secondary);
     padding: 15px 35px;
     background-color: var(--color-accent);
@@ -29,15 +32,6 @@
 }
 
 .register {
-    font-size: 16px;
-    font-weight: 700;
-    text-decoration: none;
-    border-radius: 30px;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: var(--auth-link-w, auto);
     color: var(--color-accent);
     padding: 15px 20px;
     background-color: var(--color-accent-light);

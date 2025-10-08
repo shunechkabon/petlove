@@ -114,12 +114,6 @@
     .authInline {
         display: flex;
     }
-
-    /* .homeAuth {
-        --auth-login-border: 1px solid rgba(255, 255, 255, 0.40);
-        --auth-login-hover: var(--color-accent-light);
-        --auth-login-hover-color: var(--color-accent);
-    } */
 }
 
 @media screen and (min-width: 1280px) {
@@ -131,14 +125,6 @@
     .homeContainer {
         max-width: 1216px;
     }
-
-    /* .homeNav {
-        --menu-link-color: var(--color-text-secondary);
-        --menu-link-border: 1px solid rgba(255, 255, 255, 0.40);
-        --menu-link-hover-bg: var(--color-accent-light);
-        --menu-link-hover-border: 1px solid var(--color-accent-light);
-        --menu-link-hover-color: var(--color-accent);
-    } */
 
     .right {
         gap: 0;
