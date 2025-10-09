@@ -1,0 +1,10 @@
+.item {
+    background: var(--color-bg-secondary);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 600;
+}
