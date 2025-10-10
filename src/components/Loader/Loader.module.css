@@ -2,7 +2,6 @@
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.3);
-    /* backdrop-filter: blur(2px); */
     display: grid;
     place-items: center;
     z-index: 9999;
@@ -15,8 +14,8 @@
 
 .ringWrap {
     position: relative;
-    width: 396px;
-    height: 396px;
+    width: 270px;
+    height: 270px;
     margin-inline: auto;
 }
 
@@ -26,11 +25,21 @@
     display: grid;
     place-items: center;
     font-weight: 700;
-    font-size: 80px;
+    font-size: 50px;
     color: #FFFFFF;
     line-height: 80px;
-        /* 100% */
-    letter-spacing: -3.2px;
+    letter-spacing: 1.05;
     text-align: center;
     user-select: none;
+}
+
+@media screen and (min-width: 768px) {
+    .ringWrap {
+        width: 396px;
+        height: 396px;
+    }
+
+    .value {
+        font-size: 80px;
+    }
 }

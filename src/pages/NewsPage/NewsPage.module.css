@@ -1,0 +1,47 @@
+.container {
+    max-width: 335px;
+    margin: 0 auto;
+    padding-top: 54px;
+    padding-bottom: 80px;
+}
+
+.head {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.pagination {
+    margin-top: 44px;
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        width: 704px;
+        max-width: none;
+        padding-top: 84px;
+    }
+
+    .head {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 44px;
+    }
+
+    .pagination {
+        margin-top: 60px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .container {
+        width: 1154px;
+        padding-top: 96px;
+    }
+
+    .head {
+        margin-bottom: 60px;
+    }
+}

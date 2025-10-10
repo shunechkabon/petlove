@@ -1,4 +1,24 @@
 .list {
-    display: grid;
-    gap: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 335px;
+    width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+    .list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 704px;
+        max-width: none;
+        gap: 32px 24px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .list {
+        width: 1154px;
+        gap: 68px 34px;
+    }
 }
