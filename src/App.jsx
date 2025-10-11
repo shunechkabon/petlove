@@ -28,9 +28,8 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/add-pet" element={<AddPetPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Route>
-
-      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }
