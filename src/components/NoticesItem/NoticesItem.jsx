@@ -2,7 +2,7 @@ import s from "./NoticesItem.module.css";
 
 const NoticesItem = ({
     id,
-    imgUrl,
+    imgURL,
     title,
     popularity,
     name,
@@ -25,7 +25,7 @@ const NoticesItem = ({
     
     return (
         <li id={id} className={s.item}>
-            <img src={imgUrl} className={s.img} alt={title || name || "Pet"} />
+            <img src={imgURL} loading="lazy" className={s.img} alt={title || name || "Pet"} />
 
             <div className={s.content}>
                 <div className={s.head}>

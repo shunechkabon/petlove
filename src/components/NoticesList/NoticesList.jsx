@@ -10,7 +10,7 @@ const NoticesList = ({ items = [] }) => {
                 <NoticesItem
                     key={it.id || it._id}
                     id={it.id || it._id}
-                    imgUrl={it.imgURL}
+                    imgURL={it.imgURL}
                     title={it.title}
                     popularity={it.popularity}
                     name={it.name}

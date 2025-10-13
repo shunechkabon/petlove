@@ -88,9 +88,6 @@ export const {
     setSpecies,
     setLocation,
     setSort,
-    setItems,
-    setLoading,
-    setError,
     resetFilters,
 } = noticesSlice.actions;
 
