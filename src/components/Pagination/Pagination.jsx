@@ -48,11 +48,11 @@ const Pagination = ({ page, totalPages, onChange }) => {
     return (
         <nav className={s.wrap} aria-label="Pagination">
             <div className={s.nav}>
-                <button onClick={goFirst} disabled={page === 1} className={s.btn}>
+                <button onClick={goFirst} disabled={page === 1} className={s.btn} aria-label="First page">
                     <Icon name="arrow-left" className={s.icon} width="var(--pag-icon-w)" height="var(--pag-icon-h)"/>
                     <Icon name="arrow-left" className={s.icon} width="var(--pag-icon-w)" height="var(--pag-icon-h)"/>
                 </button>
-                <button onClick={goPrev} disabled={page === 1} className={s.btn}>
+                <button onClick={goPrev} disabled={page === 1} className={s.btn} aria-label="Previous">
                     <Icon name="arrow-left" className={s.icon} width="var(--pag-icon-w)" height="var(--pag-icon-h)"/>
                 </button>
             </div>
@@ -75,10 +75,10 @@ const Pagination = ({ page, totalPages, onChange }) => {
             </div>
 
             <div className={s.nav}>
-                <button onClick={goNext} disabled={page === totalPages} className={s.btn}>
+                <button onClick={goNext} disabled={page === totalPages} className={s.btn} aria-label="Next">
                     <Icon name="arrow-right" className={s.icon} width="var(--pag-icon-w)" height="var(--pag-icon-h)"/>
                 </button>
-                <button onClick={goLast} disabled={page === totalPages} className={s.btn}>
+                <button onClick={goLast} disabled={page === totalPages} className={s.btn} aria-label="Last page">
                     <Icon name="arrow-right" className={s.icon} width="var(--pag-icon-w)" height="var(--pag-icon-h)"/>
                     <Icon name="arrow-right" className={s.icon} width="var(--pag-icon-w)" height="var(--pag-icon-h)"/>
                 </button>

@@ -33,15 +33,20 @@ const NewsPage = () => {
                     <Title>News</Title>
                     <SearchField onSearch={handleSearch}/>
                 </div>
-    
-                {isLoading && <p>Loading..</p>}
+
                 {error && <p role="alert">Error: {error}</p>}
-    
+
                 {!isLoading && !error && <NewsList items={items} />}
 
-                <div className={s.pagination}>
-                    <Pagination page={page} totalPages={totalPages ?? 1} onChange={handlePageChange} />
-                </div>
+                {!isLoading && !error && totalPages > 1 && (
+                    <div className={s.pagination}>
+                        <Pagination
+                            page={page}
+                            totalPages={totalPages ?? 1}
+                            onChange={handlePageChange}
+                        />
+                    </div>
+                )}
             </div>
         </section>
     );
