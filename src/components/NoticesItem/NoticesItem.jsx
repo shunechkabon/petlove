@@ -1,3 +1,4 @@
+import Icon from "../Icon/Icon";
 import s from "./NoticesItem.module.css";
 
 const NoticesItem = ({
@@ -30,37 +31,53 @@ const NoticesItem = ({
             <div className={s.content}>
                 <div className={s.head}>
                     <h3 className={s.title}>{title}</h3>
-                    <div>{popularity}</div>
+                    <div className={s.rate}>
+                        <Icon
+                            name="star"
+                            width="var(--logo-icon-w)"
+                            height="var(--logo-icon-h)"
+                            className={s.iconRate}
+                        />
+                        {popularity}
+                    </div>
                 </div>
 
                 <ul className={s.features}>
-                    <li>
-                        <p>Name</p>
-                        <p>{name}</p>
+                    <li className={s.featureItem}>
+                        <p className={s.featureName}>Name</p>
+                        <p className={s.featureValue}>{name}</p>
                     </li>
-                    <li>
-                        <p>Birthday</p>
-                        <p>{formattedBirthday}</p>
+                    <li className={s.featureItem}>
+                        <p className={s.featureName}>Birthday</p>
+                        <p className={s.featureValue}>{formattedBirthday}</p>
                     </li>
-                    <li>
-                        <p>Sex</p>
-                        <p>{sex}</p>
+                    <li className={s.featureItem}>
+                        <p className={s.featureName}>Sex</p>
+                        <p className={s.featureValue}>{sex}</p>
                     </li>
-                    <li>
-                        <p>Species</p>
-                        <p>{species}</p>
+                    <li className={s.featureItem}>
+                        <p className={s.featureName}>Species</p>
+                        <p className={s.featureValue}>{species}</p>
                     </li>
-                    <li>
-                        <p>Category</p>
-                        <p>{category}</p>
+                    <li className={s.featureItem}>
+                        <p className={s.featureName}>Category</p>
+                        <p className={s.featureValue}>{category}</p>
                     </li>
                 </ul>
 
                 {comment ? <p className={s.text}>{comment}</p> : null}
-                <p>{price ? `$${price}` : "Free"}</p>
-                <div className={s.add}>
-                    <button type="button">Learn more</button>
-                    <button type="button">Favorite</button>
+                <p className={s.price}>{price ? `$${price}` : "Free"}</p>
+                
+                <div className={s.btn}>
+                    <button className={s.btnMore} type="button">Learn more</button>
+                    <button className={s.btnFav} type="button">
+                        <Icon
+                            name="heart"
+                            width="var(--logo-icon-w)"
+                            height="var(--logo-icon-h)"
+                            className={s.iconFav}
+                        />
+                    </button>
                 </div>
             </div>
         </li>

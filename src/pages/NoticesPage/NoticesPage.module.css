@@ -1,3 +1,51 @@
-.section {
-    padding: 50px 0 88px;
+.container {
+    max-width: 335px;
+    margin: 0 auto;
+    padding-top: 50px;
+    padding-bottom: 88px;
+}
+
+.title,
+.filters {
+    margin-bottom: 40px;
+}
+
+.pagination {
+    margin-top: 44px;
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        width: 704px;
+        max-width: none;
+        padding-top: 84px;
+    }
+
+    .title {
+        margin-bottom: 44px;
+    }
+
+    .filters {
+        margin-bottom: 32px;
+    }
+
+    .pagination {
+        margin-top: 60px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .container {
+        width: 1216px;
+        padding-top: 96px;
+    }
+
+    .title {
+        padding-left: 32px;
+        margin-bottom: 40px;
+    }
+
+    .filters {
+        margin-bottom: 40px;
+    }
 }

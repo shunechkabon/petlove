@@ -19,11 +19,11 @@ const NoticesPage = () => {
     const handlePageChange = (nextPage) => dispatch(setPage(nextPage));
     
     return (
-        <section className={s.section}>
+        <section>
             <div className={s.container}>
-                <Title>Find your favorite pet</Title>
+                <Title className={s.title}>Find your favorite pet</Title>
 
-                <div>NoticesFilters</div>
+                <div className={s.filters}>NoticesFilters</div>
 
                 {error && <p role="alert">Error: {error}</p>}
 

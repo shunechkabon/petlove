@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: row;
     gap: 11px;
-    width: 334px;
+    max-width: 334px;
     margin: 0 auto;
 }
 
@@ -60,6 +60,7 @@
         --pag-icon-w: 7px;
         --pag-icon-h: 14px;
         gap: 24px;
+        max-width: none;
         width: 446px;
     }
 

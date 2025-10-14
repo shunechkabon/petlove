@@ -1,24 +1,26 @@
 .list {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    max-width: 335px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
     width: 100%;
+    max-width: 335px;
+    margin: 0 auto;
 }
 
-@media screen and (min-width: 768px) {
+@media (min-width: 768px) {
     .list {
-        flex-direction: row;
-        flex-wrap: wrap;
         width: 704px;
         max-width: none;
-        gap: 32px 24px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
 }
 
-@media screen and (min-width: 1280px) {
+@media (min-width: 1280px) {
     .list {
         width: 1154px;
-        gap: 68px 34px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px 32px;
+        margin: 0 auto;
     }
 }

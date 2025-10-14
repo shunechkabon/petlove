@@ -1,8 +1,8 @@
 .logo {
     --logo-color: var(--color-text);
     --logo-text-size: 28px;
-    --logo-icon-w: 18px;
-    --logo-icon-h: 16px;
+    --logo-icon-w: 17px;
+    --logo-icon-h: 17px;
     --logo-gap: 2px;
     --logo-icon-color: var(--color-accent);
 
@@ -23,8 +23,9 @@
 .icon {
     width: var(--logo-icon-w);
     height: var(--logo-icon-h);
-    color: var(--logo-icon-color);
-    fill: currentColor;
+    --icon-stroke: var(--logo-icon-color);
+    --icon-stroke-w: 1.5;
+    --icon-fill: var(--logo-icon-color);
     margin: 0 var(--logo-gap);
     vertical-align: middle;
 }
