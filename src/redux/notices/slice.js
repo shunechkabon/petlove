@@ -42,39 +42,50 @@ const noticesSlice = createSlice({
     name: "notices",
     initialState,
     reducers: {
-        setPage(state, { payload }) { state.page = payload; },
-        setLimit(state, { payload }) { state.limit = payload; },
-        setQuery(state, { payload }) { state.query = payload; state.page = 1; },
-        setCategory(state, { payload }) { state.category = payload; state.page = 1; },
-        setSex(state, { payload }) { state.sex = payload; state.page = 1; },
-        setSpecies(state, { payload }) { state.species = payload; state.page = 1; },
-        setLocation(state, { payload }) { state.location = payload; state.page = 1; },
-        setSort(state, { payload }) { state.sort = payload; state.page = 1; },
-        resetFilters(state) {
-            state.query = "";
-            state.category = null;
-            state.sex = null;
-            state.species = null;
-            state.location = null;
-            state.sort = null;
-            state.page = 1;
+        setPage(st, { payload }) {
+            const p = Number(payload);
+            st.page = Number.isFinite(p) && p > 0 ? p : 1;
+        },
+        setLimit(st, { payload }) {
+            const n = Number(payload);
+            st.limit = Number.isFinite(n) && n > 0 ? n : st.limit;
+            st.page = 1;
+        },
+        setQuery(st, { payload })   { st.query = payload ?? ""; st.page = 1; },
+        setCategory(st, { payload }) { st.category = payload || null; st.page = 1; },
+        setSex(st, { payload }) { st.sex = payload || null; st.page = 1; },
+        setSpecies(st, { payload }) { st.species = payload || null; st.page = 1; },
+        setLocation(st, { payload }) { st.location = payload || null; st.page = 1; },
+        setSort(st, { payload }) {
+            const ok = ["popular", "unpopular", "cheap", "expensive", null];
+            st.sort = ok.includes(payload) ? payload : null;
+            st.page = 1;
+        },
+        resetFilters(st) {
+            st.query = "";
+            st.category = null;
+            st.sex = null;
+            st.species = null;
+            st.location = null;
+            st.sort = null;
+            st.page = 1;
         },
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchNotices.pending, (state) => {
-                state.isLoading = true;
-                state.error = null;
+            .addCase(fetchNotices.pending, (st) => {
+                st.isLoading = true;
+                st.error = null;
             })
-            .addCase(fetchNotices.fulfilled, (state, { payload }) => {
-                state.isLoading = false;
-                state.items = payload.items;
-                state.totalPages = payload.totalPages;
-                state.page = payload.page ?? state.page;
+            .addCase(fetchNotices.fulfilled, (st, { payload }) => {
+                st.isLoading = false;
+                st.items = payload.items;
+                st.totalPages = payload.totalPages;
+                st.page = payload.page ?? st.page;
             })
-            .addCase(fetchNotices.rejected, (state, { payload }) => {
-                state.isLoading = false;
-                state.error = payload || "Failed to fetch notices";
+            .addCase(fetchNotices.rejected, (st, { payload }) => {
+                st.isLoading = false;
+                st.error = payload || "Failed to fetch notices";
             });
     },
 });
@@ -90,6 +101,11 @@ export const {
     setSort,
     resetFilters,
 } = noticesSlice.actions;
+
+export const selectNoticesFilters = (state) => {
+    const { query, category, sex, species, location, sort, page, limit } = state.notices;
+    return { query, category, sex, species, location, sort, page, limit };
+};
 
 export const selectNotices = (state) => state.notices;
 

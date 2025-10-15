@@ -10,16 +10,26 @@ export const getNotices = async ({
     location,
     sort,
 } = {}) => {
-    const params = {
+    const isPopularity = sort === "popular" || sort === "unpopular";
+    const isPrice = sort === "cheap" || sort === "expensive";
+    const paramsRaw = {
         keyword: q,
         page,
         limit,
-        ...(category ? { category } : {}),
-        ...(sex ? { sex } : {}),
-        ...(species ? { species } : {}),
-        ...(location ? { location } : {}),
-        ...(sort ? { sort } : {}),
+        category,
+        sex,
+        species,
+        locationId: location, 
+        byDate: !sort ? true : undefined,
+        byPopularity:
+            isPopularity ? (sort === "popular" ? false : true) : undefined,
+        byPrice:
+            isPrice ? (sort === "cheap" ? true : false) : undefined,
     };
+
+    const params = Object.fromEntries(
+        Object.entries(paramsRaw).filter(([, v]) => v !== "" && v !== null && v !== undefined)
+    );
 
     const { data } = await axios.get("/notices", { params });
 
