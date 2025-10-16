@@ -1,31 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Icon from "../Icon/Icon";
 import s from "./SearchField.module.css";
 
-const SearchField = ({ onSearch }) => {
-    const [value, setValue] = useState("");
+const SearchField = ({ value = "", className = "", onSearch }) => {
+    const [text, setText] = useState(value);
+
+    useEffect(() => {
+        setText(value || "");
+    }, [value]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSearch(value.trim());
+        onSearch(text.trim());
     };
 
     const handleClear = () => {
-        setValue("");
+        setText("");
         onSearch("");
     };
 
     return (
-        <form className={s.form} onSubmit={handleSubmit}>
+        <form className={`${s.form} ${className}`} onSubmit={handleSubmit}>
             <input
                 type="text"
                 placeholder="Search"
-                value={value}
-                onChange={(e) => setValue(e.target.value)}
+                value={text}
+                onChange={(e) => setText(e.target.value)}
                 className={s.input}
             />
 
-            {value && (
+            {text && (
                 <button type="button" onClick={handleClear} className={s.iconBtn}>
                     <Icon name="cross" width={18} height={18} />
                 </button>
