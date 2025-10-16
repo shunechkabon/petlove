@@ -19,3 +19,8 @@ export const getNoticeLocations = async () => {
     const { data } = await axios.get("/cities/locations");
     return data;
 };
+
+export const searchCities = async (keyword) => {
+    const { data } = await axios.get("/cities", { params: { keyword } });
+    return data;
+};

@@ -18,7 +18,8 @@
     "react-circular-progressbar": "^2.2.0",
     "react-dom": "^19.1.1",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.9.3"
+    "react-router-dom": "^7.9.3",
+    "react-select": "^5.10.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

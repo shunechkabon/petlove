@@ -35,6 +35,7 @@ const initialState = {
     sex: null,
     species: null,
     location: null,
+    locationLabel: "", 
     sort: null,
 };
 
@@ -56,6 +57,7 @@ const noticesSlice = createSlice({
         setSex(st, { payload }) { st.sex = payload || null; st.page = 1; },
         setSpecies(st, { payload }) { st.species = payload || null; st.page = 1; },
         setLocation(st, { payload }) { st.location = payload || null; st.page = 1; },
+        setLocationLabel(st, { payload }) { st.locationLabel = payload || ""; },
         setSort(st, { payload }) {
             const ok = ["popular", "unpopular", "cheap", "expensive", null];
             st.sort = ok.includes(payload) ? payload : null;
@@ -67,6 +69,7 @@ const noticesSlice = createSlice({
             st.sex = null;
             st.species = null;
             st.location = null;
+            st.locationLabel = ""; 
             st.sort = null;
             st.page = 1;
         },
@@ -98,6 +101,7 @@ export const {
     setSex,
     setSpecies,
     setLocation,
+    setLocationLabel,
     setSort,
     resetFilters,
 } = noticesSlice.actions;
@@ -106,7 +110,7 @@ export const selectNoticesFilters = (state) => {
     const { query, category, sex, species, location, sort, page, limit } = state.notices;
     return { query, category, sex, species, location, sort, page, limit };
 };
-
 export const selectNotices = (state) => state.notices;
+export const selectLocationLabel = (st) => st.notices.locationLabel;
 
 export default noticesSlice.reducer;
