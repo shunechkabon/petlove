@@ -3,6 +3,7 @@
     width: 335px;
     border-radius: 30px;
     padding: 20px;
+    position: relative;
 }
 
 .filters {
@@ -27,105 +28,329 @@
 }
 
 .row {
-    width: 100%;
     display: flex;
     gap: 8px;
 }
 
+.row >.rs {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
 /* Selects */
-.rs :global(.rs__control) {
+.rs :global(.rs__control),
+.rs :global(.rs-loc__control) {
     border: 1px solid transparent;
     border-radius: 30px;
     height: 42px;
+    width: 100%;
     background: var(--color-text-secondary);
     cursor: pointer;
 }
 
+.rs :global(.rs__control:hover),
 .rs :global(.rs__control--is-focused) {
-    border-color: transparent !important;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    box-shadow: none !important;
+    transform: none;
+}
+
+.rs :global(.rs-loc__control:hover),
+.rs :global(.rs-loc__control--is-focused) {
+    border: 1px solid var(--color-accent);
     box-shadow: none !important;
 }
 
-.rs :global(.rs__value-container) {
-    padding: 12px;
+.rs :global(.rs__value-container),
+.rs :global(.rs-loc__value-container) {
+    padding: 0 12px;
 }
 
-.rs :global(.rs__single-value) {
+.rs :global(.rs__single-value),
+.rs :global(.rs__placeholder),
+.rs :global(.rs-loc__single-value),
+.rs :global(.rs-loc__placeholder) {
     color: var(--color-text);
     font-size: 14px;
+    text-transform: capitalize;
     font-weight: 500;
 }
 
-.rs :global(.rs__placeholder) {
+/* Dropdown */
+.rs :global(.rs__indicator),
+.rs :global(.rs-loc__indicator) {
     color: var(--color-text);
-    font-size: 14px;
-    margin: 0;
+    padding-right: 12px;
+    padding-left: 4px;
 }
 
-/* Меню */
-.rs :global(.rs__menu) {
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    background: var(--color-bg-secondary);
-    z-index: 10;
+.rs :global(.rs__dropdown-indicator) svg {
+    transform: rotate(0deg);
+    transition: transform .25s ease;
 }
 
-.rs :global(.rs__menu-portal) {
-    z-index: 9999;
+.rs :global(.rs__control--menu-is-open) :global(.rs__dropdown-indicator) svg {
+    transform: rotate(180deg);
+    color: var(--color-accent);
 }
 
-/* Опции */
-.rs :global(.rs__option) {
-    padding: 10px 16px;
-    cursor: pointer;
-    font-size: 16px;
+.rs :global(.rs-loc__clear-indicator) {
+    padding: 0;
 }
 
-.rs :global(.rs__option:hover),
-.rs :global(.rs__option--is-focused) {
-    background: var(--color-accent-light);
-}
-
-.rs :global(.rs__option--is-selected) {
-    background: var(--color-accent);
-    color: #fff;
-}
-
-/* Clear / Dropdown иконки */
-.rs :global(.rs__indicator) {
-    color: var(--color-text);
-    padding: 12px;
+.rs :global(.rs__control:hover) :global(.rs__indicator),
+.rs :global(.rs-loc__control--is-focused) :global(.rs-loc__indicator),
+.rs :global(.rs-loc__indicator:hover),
+.rs :global(.rs-loc__clear-indicator:hover) {
+    color: var(--color-accent);
 }
 
 .rs :global(.rs__indicator-separator) {
     display: none;
 }
 
-/* пункт списка */
-:global(.rs__option) {
+/* Menu */
+.rs :global(.rs__menu),
+:global(.rs-loc__menu.rs-loc__menu) {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background: var(--color-text-secondary);
+    z-index: 10;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.rs :global(.rs__menu-list),
+:global(.rs-loc__menu-list.rs-loc__menu-list) {
     display: flex;
-    align-items: baseline;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
 }
 
-/* область */
-.optState {
-    font-weight: 600;
-    color: var(--color-text);
+.rs :global(.rs__menu-portal) {
+    z-index: 9999;
 }
 
-/* запятая */
-.optComma {
-    opacity: .6;
+/* Options */
+.rs :global(.rs__option) {
+    padding: 0;
+    cursor: pointer;
+    font-size: 14px;
+    opacity: 60%;
+    font-weight: 500;
+    text-transform: capitalize;
 }
 
-/* город — приглушенно */
-.optCity {
-    opacity: .6;
-}
-
-/* подсветка совпавшего префикса */
-.optMatch {
+.rs :global(.rs__option:hover),
+.rs :global(.rs__option--is-focused) {
     color: var(--color-accent);
-    font-weight: 700;
+    opacity: 100%;
+    background-color: transparent;
+}
+
+.rs :global(.rs__option--is-selected) {
+    background: transparent;
+    color: var(--color-accent);
+    opacity: 100%;
+}
+
+/* Location */
+:global(.rs-loc__option.rs-loc__option) {
+    padding: 0;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+:global(.rs-loc__option.rs-loc__option:hover),
+:global(.rs-loc__option--is-focused.rs-loc__option--is-focused) {
+    background-color: transparent;
+}
+
+.optState,
+.optCity,
+.optComma {
+    font-weight: 500;
+    font-size: 14px;
+    color: rgba(38, 38, 38, 0.4);
+}
+
+:global(.rs-loc__option.rs-loc__option:hover) .optState,
+:global(.rs-loc__option.rs-loc__option:hover) .optCity,
+:global(.rs-loc__option.rs-loc__option:hover) .optComma,
+:global(.rs-loc__option.rs-loc__option:hover) .optMatch {
+    color: var(--color-accent);
+}
+
+.optMatch {
+    color: rgba(38, 38, 38, 1);
+}
+
+/* Radio */
+.hr {
+    height: 1px;
+    opacity: .1;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.sortGroup {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+}
+
+.chip {
+    position: relative;
+    display: inline-block;
+    line-height: 1;
+    cursor: pointer;
+    user-select: none;
+}
+
+.chip > input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.chip > span {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 30px;
+    background: var(--color-text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.28;
+    color: var(--color-text);
+    border: none;
+    transition: background-color .2s ease, color .05s ease;
+}
+
+.chip > input:checked + span {
+    background-color: var(--color-accent);
+    color: var(--color-text-secondary);
+}
+
+/* Reset */
+.resetBtn {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    padding: 12px;
+    border-radius: 30px;
+    background-color: var(--color-accent);
+    color: var(--color-text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.28;
+    border: none;
+}
+
+.resetBtn:hover {
+    background-color: var(--color-accent-hover);
+}
+
+@media screen and (min-width:768px) {
+    .wrap {
+        width: 704px;
+        padding: 40px 32px;
+    }
+    
+    .filters {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .searchField {
+        width: 265px;
+        max-width: none;
+    }
+    
+    .row {
+        gap: 16px;
+    }
+    
+    .rs {
+        width: 170px;
+    }
+
+    .rs :global(.rs-loc__control) {
+        width: 228px;
+    }
+
+    .rs :global(.rs__control),
+    .rs :global(.rs-loc__control) {
+        height: 48px;
+    }
+
+    .rs :global(.rs__value-container),
+    .rs :global(.rs-loc__value-container) {
+        padding: 0 14px;
+    }
+    
+    .rs :global(.rs__single-value),
+    .rs :global(.rs__placeholder),
+    .rs :global(.rs-loc__single-value),
+    .rs :global(.rs-loc__placeholder),
+    .rs :global(.rs__option),
+    :global(.rs-loc__option.rs-loc__option),
+    .optState,
+    .optCity,
+    .optComma {
+        font-size: 16px;
+    }
+
+    .rs :global(.rs__menu-list),
+    :global(.rs-loc__menu-list.rs-loc__menu-list) {
+        padding: 14px;
+    }
+
+    .sortGroup {
+        gap: 8px;
+    }
+
+    .chip > span {
+        gap: 8px;
+        padding: 14px;
+        font-size: 16px;
+    }
+
+    .resetBtn {
+        right: 32px;
+        bottom: 40px;
+        padding: 14px;
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width:1280px) {
+    .wrap {
+        width: 1216px;
+        padding: 40px 40px;
+    }
+
+    .rs {
+        width: 190px;
+    }
+
+    .rs :global(.rs-loc__control) {
+        width: 238px;
+    }
+
+    .resetBtn {
+        right: 40px;
+    }
 }

@@ -11,6 +11,7 @@ import {
 } from "../../redux/dictionaries/slice";
 import LocationFilter from "./LocationFilter";
 import SearchField from "../SearchField/SearchField";
+import Icon from "../Icon/Icon";
 import s from "./NoticesFilters.module.css";
 
 const NoticesFilters = ({className = ""}) => {
@@ -49,6 +50,14 @@ const NoticesFilters = ({className = ""}) => {
     const onCategory = (opt) => dispatch(setCategory(opt?.value ?? null));
     const onSex = (opt) => dispatch(setSex(opt?.value ?? null));
     const onSpecies = (opt) => dispatch(setSpecies(opt?.value ?? null));
+
+    const handleSortChange = (value) => {
+        if (sort === value) {
+            dispatch(setSort(null));
+        } else {
+            dispatch(setSort(value));
+        }
+    };
 
     return (
         <div className={`${s.wrap} ${className}`}>
@@ -101,51 +110,27 @@ const NoticesFilters = ({className = ""}) => {
             </div>
 
             {/* Radio */}
+            <hr className={s.hr} />
+
             <fieldset className={s.sortGroup}>
-
-                <label className={s.chip}>
-                    <input
-                        type="radio"
-                        name="sort"
-                        value="popular"
-                        checked={sort === "popular"}
-                        onChange={() => dispatch(setSort("popular"))}
-                    />
-                    <span>Popular</span>
-                </label>
-
-                <label className={s.chip}>
-                    <input
-                        type="radio"
-                        name="sort"
-                        value="unpopular"
-                        checked={sort === "unpopular"}
-                        onChange={() => dispatch(setSort("unpopular"))}
-                    />
-                    <span>Unpopular</span>
-                </label>
-
-                <label className={s.chip}>
-                    <input
-                        type="radio"
-                        name="sort"
-                        value="cheap"
-                        checked={sort === "cheap"}
-                        onChange={() => dispatch(setSort("cheap"))}
-                    />
-                    <span>Cheap</span>
-                </label>
-
-                <label className={s.chip}>
-                    <input
-                        type="radio"
-                        name="sort"
-                        value="expensive"
-                        checked={sort === "expensive"}
-                        onChange={() => dispatch(setSort("expensive"))}
-                    />
-                    <span>Expensive</span>
-                </label>
+                {["popular", "unpopular", "cheap", "expensive"].map((val) => (
+                    <label key={val} className={s.chip}>
+                        <input
+                            type="radio"
+                            name="sort"
+                            value={val}
+                            checked={sort === val}
+                            onClick={() => handleSortChange(val)}
+                            readOnly
+                        />
+                        <span>
+                            {val.charAt(0).toUpperCase() + val.slice(1)}
+                            {sort === val &&
+                                <Icon name="cross" width={18} height={18} />
+                            }
+                        </span>
+                    </label>
+                ))}
             </fieldset>
 
             <button

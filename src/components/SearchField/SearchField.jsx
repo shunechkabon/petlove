@@ -22,11 +22,14 @@ const SearchField = ({ value = "", className = "", onSearch }) => {
     return (
         <form className={`${s.form} ${className}`} onSubmit={handleSubmit}>
             <input
+                id="search"
+                name="search"
                 type="text"
                 placeholder="Search"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 className={s.input}
+                aria-label="Search field"
             />
 
             {text && (

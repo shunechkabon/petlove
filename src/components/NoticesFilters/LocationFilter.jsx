@@ -103,11 +103,17 @@ const LocationFilter = ({ valueId, valueLabel, onChange }) => {
         </RSComponents.DropdownIndicator>
     );
 
+    const ClearIndicator = (props) => (
+        <RSComponents.ClearIndicator {...props}>
+            <Icon name="cross" width={18} height={18} aria-hidden="true" />
+        </RSComponents.ClearIndicator>
+    );
+
     return (
         <AsyncSelect
             ref={selectRef}
             className={s.rs}
-            classNamePrefix="rs"
+            classNamePrefix="rs-loc"
             cacheOptions
             loadOptions={loadLocationOptions}
             inputValue={inputVal}
@@ -131,6 +137,7 @@ const LocationFilter = ({ valueId, valueLabel, onChange }) => {
             components={{
                 Option: CityOption,
                 DropdownIndicator,
+                ClearIndicator, 
                 IndicatorSeparator: () => null,
             }}
             openMenuOnFocus={false}
