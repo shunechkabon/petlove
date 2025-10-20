@@ -16,6 +16,12 @@
 .searchField {
     background-color: var(--color-text-secondary);
     border-radius: 30px;
+    border: 1px solid transparent;
+}
+
+.searchField:hover,
+.searchField:focus-within {
+    border: 1px solid var(--color-accent);
 }
 
 .searchField input {
@@ -250,16 +256,16 @@
     bottom: 20px;
     padding: 12px;
     border-radius: 30px;
-    background-color: var(--color-accent);
-    color: var(--color-text-secondary);
+    background-color: var(--color-accent-light);
+    color: var(--color-accent);
     font-size: 14px;
     font-weight: 500;
     line-height: 1.28;
-    border: none;
+    border: 1px solid var(--color-accent);
 }
 
 .resetBtn:hover {
-    background-color: var(--color-accent-hover);
+    box-shadow: 0 1px 4px rgba(246, 184, 61, 0.3);
 }
 
 @media screen and (min-width:768px) {
