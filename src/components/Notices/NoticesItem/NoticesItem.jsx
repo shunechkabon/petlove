@@ -1,4 +1,4 @@
-import Icon from "../Icon/Icon";
+import Icon from "../../Icon/Icon";
 import s from "./NoticesItem.module.css";
 
 const NoticesItem = ({

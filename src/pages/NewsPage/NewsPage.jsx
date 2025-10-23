@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectNews, fetchNews, setQuery, setPage } from "../../redux/news/slice";
-import NewsList from "../../components/NewsList/NewsList";
+import NewsList from "../../components/News/NewsList/NewsList";
 import Title from "../../components/Title/Title";
 import SearchField from "../../components/SearchField/SearchField";
 import Pagination from "../../components/Pagination/Pagination";

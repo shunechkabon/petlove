@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import { components as RSComponents } from "react-select";
 import AsyncSelect from "react-select/async";
-import { searchCities } from "../../api/dictionaries";
+import { searchCities } from "../../../api/dictionaries";
 import CityOption from "./CityOption";
-import Icon from "../Icon/Icon";
+import Icon from "../../Icon/Icon";
 import s from "./NoticesFilters.module.css";
 
 const LocationFilter = ({ valueId, valueLabel, onChange }) => {

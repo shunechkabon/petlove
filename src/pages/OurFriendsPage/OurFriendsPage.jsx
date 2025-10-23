@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchFriends, selectFriends } from "../../redux/friends/slice";
 import Title from "../../components/Title/Title";
-import FriendsList from "../../components/FriendsList/FriendsList";
+import FriendsList from "../../components/Friends/FriendsList/FriendsList";
 import s from "./OurFriendsPage.module.css";
 
 const OurFriendsPage = () => {

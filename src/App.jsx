@@ -10,7 +10,7 @@ import OurFriendsPage from "./pages/OurFriendsPage/OurFriendsPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import Layout from "./components/Layout/Layout";
-// import PublicRoute from "./routes/PublicRoute";
+import PublicRoute from "./routes/PublicRoute";
 // import PrivateRoute from "./routes/PrivateRoute";
 
 function App() {
@@ -24,8 +24,20 @@ function App() {
         <Route path="/news" element={<NewsPage />} />
         <Route path="/notices" element={<NoticesPage />} />
         <Route path="/friends" element={<OurFriendsPage />} />
-        <Route path="/register" element={<RegistrationPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <RegistrationPage />
+            </PublicRoute>
+          } />
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <LoginPage />
+            </PublicRoute>
+          } />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/add-pet" element={<AddPetPage />} />
         <Route path="*" element={<NotFoundPage />} />

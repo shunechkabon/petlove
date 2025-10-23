@@ -4,14 +4,14 @@ import Select from "react-select";
 import {
     selectNotices, setQuery, setSort, setCategory,
     setSex, setSpecies, setLocation, setLocationLabel, resetFilters,
-} from "../../redux/notices/slice";
+} from "../../../redux/notices/slice";
 import {
     fetchCategories, fetchSexes, fetchSpecies,
     selectCategories, selectSexes, selectSpeciesDict, selectDictLoaded,
-} from "../../redux/dictionaries/slice";
+} from "../../../redux/dictionaries/slice";
 import LocationFilter from "./LocationFilter";
-import SearchField from "../SearchField/SearchField";
-import Icon from "../Icon/Icon";
+import SearchField from "../../SearchField/SearchField";
+import Icon from "../../Icon/Icon";
 import s from "./NoticesFilters.module.css";
 
 const NoticesFilters = ({className = ""}) => {

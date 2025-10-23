@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectNotices, setPage, fetchNotices } from "../../redux/notices/slice";
 import Title from "../../components/Title/Title";
 import Pagination from "../../components/Pagination/Pagination";
-import NoticesList from "../../components/NoticesList/NoticesList";
-import NoticesFilters from "../../components/NoticesFilters/NoticesFilters";
+import NoticesList from "../../components/Notices/NoticesList/NoticesList";
+import NoticesFilters from "../../components/Notices/NoticesFilters/NoticesFilters";
 import s from "./NoticesPage.module.css";
 
 const DEFAULT_LIMIT = 6;
