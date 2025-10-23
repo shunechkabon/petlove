@@ -11,7 +11,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import RegistrationPage from "./pages/RegistrationPage/RegistrationPage";
 import Layout from "./components/Layout/Layout";
 import PublicRoute from "./routes/PublicRoute";
-// import PrivateRoute from "./routes/PrivateRoute";
+import PrivateRoute from "./routes/PrivateRoute";
 
 function App() {
   return (
@@ -38,8 +38,20 @@ function App() {
               <LoginPage />
             </PublicRoute>
           } />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/add-pet" element={<AddPetPage />} />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <ProfilePage />
+            </PrivateRoute>
+          } />
+        <Route
+          path="/add-pet"
+          element={
+            <PrivateRoute>
+              <AddPetPage />
+            </PrivateRoute>
+          } />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

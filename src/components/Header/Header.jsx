@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import Logo from "../Logo/Logo";
-import Nav from "../Nav/Nav";
-import AuthNav from "../AuthNav/AuthNav";
-import Burger from "../Burger/Burger";
+import Nav from "./Nav/Nav";
+import AuthNav from "./AuthNav/AuthNav";
+import Burger from "./Burger/Burger";
 import Icon from "../Icon/Icon";
 import s from "./Header.module.css";
 

@@ -55,3 +55,21 @@ export const logoutUser = createAsyncThunk("auth/logout", async (_, thunkAPI) =>
         return thunkAPI.rejectWithValue(message);
     }
 });
+
+export const refreshUser = createAsyncThunk(
+    "auth/refreshUser",
+    async (_, thunkAPI) => {
+        const token = localStorage.getItem("token");
+        if (!token) return thunkAPI.rejectWithValue("No token");
+
+        try {
+            setAuthHeader(token);
+            const { data } = await axios.get("/users/current");
+            return { user: data, token };
+        } catch (err) {
+            const message =
+                err.response?.data?.message || "Failed to refresh user";
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);

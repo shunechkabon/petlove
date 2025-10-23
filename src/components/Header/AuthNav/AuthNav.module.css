@@ -17,7 +17,8 @@
     width: var(--auth-link-w, auto);
 }
 
-.logIn {
+.logIn,
+.logOut {
     border: var(--auth-login-border, none);
     color: var(--color-text-secondary);
     padding: 15px 35px;
@@ -26,6 +27,7 @@
 }
 
 .logIn:hover,
+.LogOut:hover,
 .activeLogIn {
     background-color: var(--auth-login-hover, var(--color-accent-hover));
     color: var(--auth-login-hover-color, var(--color-text-secondary));

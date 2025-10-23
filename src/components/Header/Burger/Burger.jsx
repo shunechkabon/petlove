@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import s from "./Burger.module.css";
-import Icon from "../Icon/Icon";
+import Icon from "../../Icon/Icon";
 import Nav from "../Nav/Nav";
 import AuthNav from "../AuthNav/AuthNav";
 
