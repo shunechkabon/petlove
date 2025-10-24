@@ -1,10 +1,15 @@
 import { useEffect } from "react";
-import s from "./Burger.module.css";
-import Icon from "../../Icon/Icon";
+import { useSelector } from "react-redux";
+import { selectIsLoggedIn } from "../../../redux/auth/slice";
 import Nav from "../Nav/Nav";
 import AuthNav from "../AuthNav/AuthNav";
+import LogOutBtn from "../LogOutBtn/LogOutBtn";
+import Icon from "../../Icon/Icon";
+import s from "./Burger.module.css";
 
 const Burger = ({ className = "", open, onClose }) => {
+    const isLoggedIn = useSelector(selectIsLoggedIn);
+
     useEffect(() => {
         const onKey = (e) => e.key === "Escape" && onClose();
         document.addEventListener("keydown", onKey);
@@ -46,7 +51,7 @@ const Burger = ({ className = "", open, onClose }) => {
                 </button>
 
                 <Nav className={s.nav} />
-                <AuthNav className={s.authNav} />
+                {isLoggedIn ? <LogOutBtn className={s.authNav}/> : <AuthNav className={s.authNav}/>}
             </div>
         </div>
     );

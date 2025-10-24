@@ -9,8 +9,8 @@ const NotFoundPage = () => {
                     4
                     <div className={s.imgContainer}>
                         <img
-                            srcSet="/src/assets/not-found.png 1x, /src/assets/not-found@2x.png 2x"
-                            src="/src/assets/not-found.png"
+                            srcSet="/src/assets/images/not-found.png 1x, /src/assets/images/not-found@2x.png 2x"
+                            src="/src/assets/images/not-found.png"
                             alt="Red cat" />
                     </div>
                     4

@@ -1,14 +1,19 @@
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { selectIsLoggedIn } from "../../redux/auth/slice";
 import Logo from "../Logo/Logo";
 import Nav from "./Nav/Nav";
 import AuthNav from "./AuthNav/AuthNav";
+import UserNav from "./UserNav/UserNav";
+import UserBar from "./UserBar/UserBar";
 import Burger from "./Burger/Burger";
 import Icon from "../Icon/Icon";
 import s from "./Header.module.css";
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
+    const isLoggedIn = useSelector(selectIsLoggedIn);
 
     const { pathname } = useLocation();
     const isHome = pathname === "/home";
@@ -27,9 +32,13 @@ const Header = () => {
     
                     {/* Auth buttons */}
                     <div className={s.authInline}>
-                        <AuthNav />
+                        {isLoggedIn ? <UserNav /> : <AuthNav />}
                     </div>
     
+                    <div className={s.userInline}>
+                        <UserBar showName={false}/>
+                    </div>
+
                     <button
                         type="button"
                         className={s.burgerBtn}

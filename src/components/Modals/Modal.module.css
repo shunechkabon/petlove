@@ -1,0 +1,39 @@
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .3);
+    display: grid;
+    place-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: var(--color-text-secondary, #fff);
+    color: var(--color-text, #262626);
+    border-radius: 30px;
+    width: min(92vw, 320px);
+    position: relative;
+}
+
+.closeBtn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.closeIcon {
+    width: 24px;
+    height: 24px;
+    color: var(--color-text);
+    transition: color 0.3s ease;
+}
+
+.closeBtn:hover .closeIcon {
+    color: var(--color-accent);
+}

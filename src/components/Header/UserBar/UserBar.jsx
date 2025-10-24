@@ -4,16 +4,22 @@ import { selectUser } from "../../../redux/auth/slice";
 import Icon from "../../Icon/Icon";
 import s from "./UserBar.module.css";
 
-const UserBar = ({ className = "" }) => {
+const UserBar = ({ className = "", showName = true }) => {
     const user = useSelector(selectUser);
     const name = user?.name || "User";
-    const avatar = user?.avatarURL || "/src/assets/icons/user.svg";
+    const avatar = user?.avatarURL;
 
     return (
         <NavLink to="/profile" className={`${s.userBar} ${className}`}>
-            <img src={avatar} alt={`${name} avatar`} className={s.avatar} />
-            <span className={s.name}>{name}</span>
-            <Icon name="chevron-right" width={16} height={16} className={s.chev} />
+            {avatar ? (
+                <img src={avatar} alt={`${name} avatar`} className={s.avatar} />
+            ) : (
+                <div className={`${s.avatar} ${s.iconContainer}`}>
+                    <Icon name="user" width={20} height={20} className={s.icon} />
+                </div>
+            )}
+            
+            {showName && <span className={s.name}>{name}</span>}
         </NavLink>
     );
 };

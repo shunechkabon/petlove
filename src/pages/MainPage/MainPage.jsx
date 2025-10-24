@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import Loader from '../../components/Loader/Loader';
 import Logo from '../../components/Logo/Logo';
 import s from './MainPage.module.css';
-// import logoUrl from '../../assets/logo.svg';
 
 const MainPage = () => {
     const [showLoader, setShowLoader] = useState(false);

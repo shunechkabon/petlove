@@ -7,13 +7,16 @@ export const register = createAsyncThunk(
     "auth/register",
     async (formData, thunkAPI) => {
         try {
-            const { data } = await axios.post("/users/signup", formData);
+            const { data: registerData } = await axios.post("/users/signup", formData);
 
-            setAuthHeader(data.token);
-            thunkAPI.dispatch(setCredentials(data));
+            setAuthHeader(registerData.token);
+            const { data: currentUser } = await axios.get("/users/current");
 
-            localStorage.setItem("token", data.token);
-            return data;
+            const fullData = { user: currentUser, token: registerData.token };
+            thunkAPI.dispatch(setCredentials(fullData));
+            localStorage.setItem("token", registerData.token);
+
+            return fullData;
         } catch (err) {
             const message =
                 err.response?.data?.message || "Registration failed. Try again.";
@@ -27,13 +30,16 @@ export const login = createAsyncThunk(
     "auth/login",
     async (formData, thunkAPI) => {
         try {
-            const { data } = await axios.post("/users/signin", formData);
+            const { data: loginData } = await axios.post("/users/signin", formData);
 
-            setAuthHeader(data.token);
-            thunkAPI.dispatch(setCredentials(data));
+            setAuthHeader(loginData.token);
+            const { data: currentUser } = await axios.get("/users/current");
 
-            localStorage.setItem("token", data.token);
-            return data;
+            const fullData = { user: currentUser, token: loginData.token };
+            thunkAPI.dispatch(setCredentials(fullData));
+            localStorage.setItem("token", loginData.token);
+
+            return fullData;
         } catch (err) {
             const message =
                 err.response?.data?.message || "Login failed. Check your credentials.";
@@ -46,13 +52,15 @@ export const login = createAsyncThunk(
 export const logoutUser = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
     try {
         await axios.post("/users/signout");
-        clearAuthHeader();
-        localStorage.removeItem("token");
-        thunkAPI.dispatch(logout());
+        return true;
     } catch (err) {
         const message =
             err.response?.data?.message || "Logout failed.";
         return thunkAPI.rejectWithValue(message);
+    } finally {
+        clearAuthHeader();
+        localStorage.removeItem("token");
+        thunkAPI.dispatch(logout());
     }
 });
 

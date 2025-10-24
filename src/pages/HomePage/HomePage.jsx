@@ -15,20 +15,20 @@ const HomePage = () => {
 
                 <picture>
                     <source
-                        srcSet="/src/assets/home-desktop.jpg 1x, /src/assets/home-desktop@2x.jpg 2x"
+                        srcSet="/src/assets/images/home-desktop.jpg 1x, /src/assets/images/home-desktop@2x.jpg 2x"
                         media="(min-width: 1280px)"
                     />
                     <source
-                        srcSet="/src/assets/home-tablet.jpg 1x, /src/assets/home-tablet@2x.jpg 2x"
+                        srcSet="/src/assets/images/home-tablet.jpg 1x, /src/assets/images/home-tablet@2x.jpg 2x"
                         media="(min-width: 768px)"
                     />
                     <source
-                        srcSet="/src/assets/home-mobile.jpg 1x, /src/assets/home-mobile@2x.jpg 2x"
+                        srcSet="/src/assets/images/home-mobile.jpg 1x, /src/assets/images/home-mobile@2x.jpg 2x"
                         media="(max-width: 767px)"
                     />
                     <img
                         className={s.image}
-                        src="/src/assets/home-desktop.jpg"
+                        src="/src/assets/images/home-desktop.jpg"
                         alt="Happy pet and owner"
                     />
                 </picture>
