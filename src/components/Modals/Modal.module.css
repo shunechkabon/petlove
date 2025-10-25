@@ -11,7 +11,7 @@
     background: var(--color-text-secondary, #fff);
     color: var(--color-text, #262626);
     border-radius: 30px;
-    width: min(92vw, 320px);
+    width: min(92vw, 335px);
     position: relative;
 }
 

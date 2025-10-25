@@ -31,12 +31,15 @@ const Header = () => {
                     </div>
     
                     {/* Auth buttons */}
-                    <div className={s.authInline}>
+                    <div
+                        className={`${s.authInline} ${menuOpen ? s.invisibleReserve : ""}`}
+                        aria-hidden={menuOpen}
+                    >
                         {isLoggedIn ? <UserNav /> : <AuthNav />}
                     </div>
     
                     <div className={s.userInline}>
-                        <UserBar showName={false}/>
+                        {isLoggedIn && <UserBar showName={false}/> }
                     </div>
 
                     <button

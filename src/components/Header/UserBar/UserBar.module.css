@@ -3,6 +3,7 @@
     align-items: center;
     gap: 8px;
     text-decoration: none;
+    max-width: 200px;
 }
 
 .avatar {
@@ -22,6 +23,16 @@
 }
 
 .name {
-    font-weight: 600;
-    color: var(--color-text);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--auth-profile-color, var(--color-text));
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    transition: color .3s ease;
+}
+
+.userBar:hover .name {
+    color: var(--auth-profile-hover-color, var(--color-accent));
 }

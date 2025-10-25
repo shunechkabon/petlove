@@ -1,0 +1,6 @@
+.userNav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-direction: var(--auth-fl-d, row);
+}

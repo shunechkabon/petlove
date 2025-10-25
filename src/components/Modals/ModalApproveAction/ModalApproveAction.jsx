@@ -32,10 +32,10 @@ const ModalApproveAction = ({
                 <h3 className={s.title}>{title}</h3>
 
                 <div className={s.actions}>
-                    <button type="button" className={s.approve} onClick={handleApprove}>
+                    <button type="button" className={`${s.approve} ${s.btn}`} onClick={handleApprove}>
                         Yes
                     </button>
-                    <button type="button" className={s.cancel} onClick={onClose}>
+                    <button type="button" className={`${s.cancel} ${s.btn}`} onClick={onClose}>
                         Cancel
                     </button>
                 </div>

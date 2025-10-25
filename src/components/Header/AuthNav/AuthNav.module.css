@@ -8,6 +8,8 @@
 .link {
     font-size: 16px;
     font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.25;
     text-decoration: none;
     border-radius: 30px;
     
@@ -17,8 +19,7 @@
     width: var(--auth-link-w, auto);
 }
 
-.logIn,
-.logOut {
+.logIn {
     border: var(--auth-login-border, none);
     color: var(--color-text-secondary);
     padding: 15px 35px;
@@ -27,7 +28,6 @@
 }
 
 .logIn:hover,
-.LogOut:hover,
 .activeLogIn {
     background-color: var(--auth-login-hover, var(--color-accent-hover));
     color: var(--auth-login-hover-color, var(--color-text-secondary));

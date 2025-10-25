@@ -17,7 +17,7 @@
 }
 
 .title {
-    width: 295px;
+    max-width: 295px;
     color: var(--color-text-secondary);
     font-size: 50px;
     font-weight: 700;
@@ -30,7 +30,7 @@
 }
 
 .text {
-    width: 295px;
+    max-width: 295px;
     color: var(--color-text-secondary);
     font-size: 14px;
     font-weight: 500;
@@ -58,12 +58,14 @@
     }
 
     .title {
+        max-width: none;
         width: 640px;
         font-size: 80px;
         letter-spacing: -2.4px;
     }
 
     .text {
+        max-width: none;
         width: 255px;
         font-size: 18px;
         line-height: 1.2;

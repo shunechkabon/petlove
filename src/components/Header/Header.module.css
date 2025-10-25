@@ -14,6 +14,14 @@
     --auth-login-border: 1px solid rgba(255, 255, 255, 0.40);
     --auth-login-hover: var(--color-accent-light);
     --auth-login-hover-color: var(--color-accent);
+
+    --auth-profile-color: var(--color-text-secondary);
+    --auth-profile-hover-color: var(--color-accent-light-hover);
+
+    --auth-logout-bg: var(--color-accent-light);
+    --auth-logout-color: var(--color-accent);
+    --auth-logout-hover: var(--color-accent-light-hover);
+    --auth-logout-hover-color: var(--color-accent);
 }
 
 .container {
@@ -46,6 +54,10 @@
 .navInline,
 .authInline {
     display: none;
+}
+
+.invisibleReserve {
+    visibility: hidden;
 }
 
 .userInline {
@@ -85,6 +97,11 @@
     --auth-login-border: none;
     --auth-login-hover: var(--color-accent-hover);
     --auth-login-hover-color: var(--color-text-secondary);
+
+    --auth-logout-bg: var(--color-accent);
+    --auth-logout-color: var(--color-text-secondary);
+    --auth-logout-hover: var(--color-accent-hover);
+    --auth-logout-hover-color: var(--color-text-secondary);
 }
 
 @media screen and (min-width: 768px) {
