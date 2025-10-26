@@ -1,4 +1,5 @@
 import { useRef, useEffect, useLayoutEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../../redux/auth/slice";
 import Nav from "../Nav/Nav";
@@ -66,7 +67,7 @@ const Burger = ({ className = "", open, onClose }) => {
         ? s.panelClosing
         : (open && animateIn ? s.panelOpen : "");
 
-    return (
+    return createPortal(
         <div className={`${s.burger} ${className}`}>
             <div className={s.backdrop} onClick={onClose} />
             <div
@@ -95,7 +96,7 @@ const Burger = ({ className = "", open, onClose }) => {
                 {isLoggedIn ? <LogOutBtn /> : <AuthNav />}
             </div>
         </div>
-    );
+        , document.body);
 };
 
 export default Burger;
