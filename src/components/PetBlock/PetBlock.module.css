@@ -1,0 +1,122 @@
+.container {
+    background-color: var(--color-accent);
+    border-radius: 30px;
+    height: 280px;
+    background-size: 93%;
+    background-repeat: no-repeat;
+    background-position: left 22px top 37px;
+    background-image: url('/src/assets/images/petblock-rectangle.png');
+    overflow: hidden;
+    position: relative;
+}
+
+.img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 5%;
+}
+
+.card {
+    display: none;
+    position: absolute;
+    left: 32px;
+    bottom: 32px;
+    width: 294px;
+    background-color: var(--color-text-secondary);
+    border-radius: 20px;
+    padding: 16px 16px 18px;
+}
+
+.icon {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    padding: 14px;
+    background-color: var(--color-accent-light);
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.name {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    color: var(--color-accent);
+}
+
+.birthday {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.16;
+    letter-spacing: -0.02em;
+    color: rgba(38, 38, 38, 0.5);
+}
+
+.date {
+    color: rgba(38, 38, 38, 1);
+}
+
+.text {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.16;
+    letter-spacing: -0.02em;
+    color: rgba(38, 38, 38, 0.8);
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        border-radius: 60px;
+        height: 302px;
+        background-size: 75%;
+        background-position: left 124px top 53px;
+    }
+    
+    .img {
+        position: absolute;
+        right: 90px;
+        width: 320px;
+        height: 350px;
+        object-position: top center;
+    }
+    
+    .card {
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .container {
+        height: 654px;
+        width: 592px;
+        background-size: 90%;
+        background-position: left 34px top 53px;
+    }
+
+    .img {
+        right: 22px;
+        bottom: 0;
+        width: 536px;
+        height: 632px;
+    }
+
+    .card {
+        left: 61px;
+        bottom: 97px;
+}
+}

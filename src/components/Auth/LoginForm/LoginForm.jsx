@@ -11,6 +11,7 @@ import Icon from "../../Icon/Icon";
 import s from "./LoginForm.module.css";
 
 const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
 const schema = Yup.object({
     email: Yup.string().trim()
@@ -32,11 +33,15 @@ const LoginForm = () => {
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
+        watch
     } = useForm({
         defaultValues: { email: "", password: "" },
         mode: "onSubmit",
         resolver: yupResolver(schema),
     });
+
+    const passwordVal = watch("password", "");
+    const isStrong = strongPasswordRegex.test(passwordVal);
 
     useEffect(() => {
         if (error) toast.error(error);
@@ -54,18 +59,32 @@ const LoginForm = () => {
     return (
         <form className={s.form} onSubmit={handleSubmit(onSubmit)} noValidate>
             <label className={s.label} htmlFor="email">
-                <input
-                    id="email"
-                    className={s.input}
-                    type="email"
-                    autoComplete="username"
-                    placeholder="Email"
-                    autoCapitalize="none"
-                    autoCorrect="off"
-                    spellCheck={false}
-                    inputMode="email"
-                    {...register("email")}
-                />
+                <div className={s.inputWrap}>
+                    <input
+                        id="email"
+                        className={`${s.input} ${errors.email ? s.inputError : ""}`}
+                        type="email"
+                        autoComplete="username"
+                        placeholder="Email"
+                        autoCapitalize="none"
+                        autoCorrect="off"
+                        spellCheck={false}
+                        inputMode="email"
+                        {...register("email")}
+                    />
+                    {errors.email && (
+                        <button
+                            type="button"
+                            className={s.clearBtn}
+                            onClick={() => {
+                                document.getElementById("email").value = "";
+                            }}
+                            aria-label="Clear email"
+                        >
+                            <Icon className={s.icon} name="cross" width={18} height={18} />
+                        </button>
+                    )}
+                </div>
                 {errors.email && <span className={s.error}>{errors.email.message}</span>}
             </label>
 
@@ -73,7 +92,12 @@ const LoginForm = () => {
                 <div className={s.passwordWrap}>
                     <input
                         id="password"
-                        className={s.input}
+                        className={
+                            `${s.input} 
+                            ${errors.password ? s.inputError : ""}
+                            ${isStrong && passwordVal ? s.inputSuccess : ""}
+                            ${s.inputHasIcon}`
+                        }
                         type={showPassword ? "text" : "password"}
                         placeholder="Password"
                         autoComplete="current-password"
@@ -82,6 +106,13 @@ const LoginForm = () => {
                         spellCheck={false}
                         {...register("password")}
                     />
+
+                    {isStrong && passwordVal && !errors.password && (
+                        <span aria-hidden="true">
+                            <Icon className={`${s.okIcon} ${s.icon}`} name="check" width={18} height={18} />
+                        </span>
+                    )}
+
                     <button
                         type="button"
                         className={s.eyeBtn}
@@ -91,16 +122,21 @@ const LoginForm = () => {
                     >
                         <Icon
                             name={showPassword ? "eye-off" : "eye"}
-                            width={22}
-                            height={22}
+                            width={18}
+                            height={18}
                         />
                     </button>
                 </div>
-                {errors.password && <span className={s.error}>{errors.password.message}</span>}
+
+                {errors.password ? (
+                    <span className={s.error}>{errors.password.message}</span>
+                ) : (
+                    isStrong && passwordVal && <span className={s.hintSuccess}>Password is secure</span>
+                )}
             </label>
 
             <button
-                className={s.submit}
+                className={s.submitBtn}
                 type="submit"
                 disabled={isSubmitting || isLoading}
                 aria-busy={isSubmitting || isLoading}

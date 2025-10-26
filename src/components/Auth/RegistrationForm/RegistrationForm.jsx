@@ -11,6 +11,7 @@ import Icon from "../../Icon/Icon";
 import s from "./RegistrationForm.module.css";
 
 const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
 const schema = Yup.object({
     name: Yup.string().trim()
@@ -39,11 +40,15 @@ const RegistrationForm = () => {
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
+        watch
     } = useForm({
         defaultValues: { name: "", email: "", password: "", confirmPassword: "" },
         mode: "onSubmit",
         resolver: yupResolver(schema),
     });
+
+    const passwordVal = watch("password", "");
+    const isStrong = strongPasswordRegex.test(passwordVal);
 
     useEffect(() => {
         if (error) toast.error(error);
@@ -63,7 +68,7 @@ const RegistrationForm = () => {
             <label className={s.label} htmlFor="name">
                 <input
                     id="name"
-                    className={s.input}
+                    className={`${s.input} ${errors.name ? s.inputError : ""}`}
                     type="text"
                     placeholder="Name"
                     autoComplete="name"
@@ -77,20 +82,34 @@ const RegistrationForm = () => {
             </label>
 
             <label className={s.label} htmlFor="email">
-                <input
-                    id="email"
-                    className={s.input}
-                    type="email"
-                    placeholder="Email"
-                    autoComplete="email"
-                    autoCapitalize="none"
-                    autoCorrect="off"
-                    spellCheck={false}
-                    inputMode="email"
-                    aria-invalid={!!errors.email}
-                    aria-describedby={errors.email ? "email-error" : undefined}
-                    {...register("email")}
-                />
+                <div className={s.inputWrap}>
+                    <input
+                        id="email"
+                        className={`${s.input} ${errors.email ? s.inputError : ""}`}
+                        type="email"
+                        placeholder="Email"
+                        autoComplete="email"
+                        autoCapitalize="none"
+                        autoCorrect="off"
+                        spellCheck={false}
+                        inputMode="email"
+                        aria-invalid={!!errors.email}
+                        aria-describedby={errors.email ? "email-error" : undefined}
+                        {...register("email")}
+                    />
+                    {errors.email && (
+                        <button
+                            type="button"
+                            className={s.clearBtn}
+                            onClick={() => {
+                                document.getElementById("email").value = "";
+                            }}
+                            aria-label="Clear email"
+                        >
+                            <Icon className={s.icon} name="cross" width={18} height={18} />
+                        </button>
+                    )}
+                </div>
                 {errors.email && <span className={s.error}>{errors.email.message}</span>}
             </label>
 
@@ -98,7 +117,12 @@ const RegistrationForm = () => {
                 <div className={s.passwordWrap}>
                     <input
                         id="password"
-                        className={s.input}
+                        className={
+                            `${s.input} 
+                            ${errors.password ? s.inputError : ""}
+                            ${isStrong && passwordVal ? s.inputSuccess : ""}
+                            ${s.inputHasIcon}`
+                        }
                         type={showPassword ? "text" : "password"}
                         placeholder="Password"
                         autoComplete="new-password"
@@ -109,6 +133,13 @@ const RegistrationForm = () => {
                         aria-describedby={errors.password ? "password-error" : undefined}
                         {...register("password")}
                     />
+
+                    {isStrong && passwordVal && !errors.password && (
+                        <span aria-hidden="true">
+                            <Icon className={`${s.okIcon} ${s.icon}`} name="check" width={18} height={18} />
+                        </span>
+                    )}
+
                     <button
                         type="button"
                         className={s.eyeBtn}
@@ -117,20 +148,26 @@ const RegistrationForm = () => {
                         aria-pressed={showPassword}
                     >
                         <Icon
-                            name={showPassword ? "eye-off" : "eye"}
-                            width={22}
-                            height={22}
+                            className={s.icon}
+                            name={showPassword ? "eye" : "eye-off"}
+                            width={18}
+                            height={18}
                         />
                     </button>
                 </div>
-                {errors.password && <span className={s.error}>{errors.password.message}</span>}
+
+                {errors.password ? (
+                    <span className={s.error}>{errors.password.message}</span>
+                ) : (
+                    isStrong && passwordVal && <span className={s.hintSuccess}>Password is secure</span>
+                )}
             </label>
 
             <label className={s.label} htmlFor="confirmPassword">
                 <div className={s.passwordWrap}>
                     <input
                         id="confirmPassword"
-                        className={s.input}
+                        className={`${s.input} ${errors.confirmPassword ? s.inputError : ""}`}
                         type={showConfirm ? "text" : "password"}
                         placeholder="Confirm password"
                         autoComplete="new-password"
@@ -149,16 +186,17 @@ const RegistrationForm = () => {
                         aria-pressed={showConfirm}
                     >
                         <Icon
-                            name={showConfirm ? "eye-off" : "eye"}
-                            width={22}
-                            height={22}
+                            className={s.icon}
+                            name={showConfirm ? "eye" : "eye-off"}
+                            width={18}
+                            height={18}
                         />
                     </button>
                 </div>
                 {errors.confirmPassword && <span className={s.error}>{errors.confirmPassword.message}</span>}
             </label>
 
-            <button className={s.submit} type="submit" disabled={isSubmitting || isLoading}>
+            <button className={s.submitBtn} type="submit" disabled={isSubmitting || isLoading}>
                 REGISTRATION
             </button>
         </form>
