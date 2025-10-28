@@ -1,5 +1,5 @@
 import UserBar from "../UserBar/UserBar";
-import LogOutBtn from "../LogOutBtn/LogOutBtn";
+import LogOutBtn from "../../Auth/LogOutBtn/LogOutBtn";
 import s from "./UserNav.module.css";
 
 const UserNav = ({ className = "" }) => {

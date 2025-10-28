@@ -103,7 +103,7 @@
     margin-bottom: 12px;
 }
 
-.btn {
+.btns {
     width: 100%;
     display: flex;
     gap: 10px;
@@ -151,6 +151,10 @@
     --icon-stroke: var(--color-accent);
     --icon-stroke-w: 1.5;
     --icon-fill: none;
+}
+
+.filled .iconFav {
+    --icon-fill: var(--color-accent);
 }
 
 @media screen and (min-width: 768px) {

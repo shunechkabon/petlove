@@ -39,3 +39,8 @@ export const getNotices = async ({
         page: data?.page ?? page,
     };
 };
+
+export const getNoticeById = async (id) => {
+    const { data } = await axios.get(`/notices/${id}`);
+    return data;
+};

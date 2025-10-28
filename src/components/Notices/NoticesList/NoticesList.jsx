@@ -1,7 +1,15 @@
 import NoticesItem from "../NoticesItem/NoticesItem";
 import s from "./NoticesList.module.css";
 
-const NoticesList = ({ items = [] }) => {
+const NoticesList = ({
+    items = [],
+    showRemove = false,
+    onRemove,
+    mode = "catalog",
+    favIds,
+    onToggleFavorite,
+    onLearnMore 
+}) => {
     if (!items.length) return <p>No results.</p>;
 
     return (
@@ -20,6 +28,12 @@ const NoticesList = ({ items = [] }) => {
                     category={it.category}
                     comment={it.comment}
                     price={it.price}
+                    showRemove={showRemove}
+                    mode={mode}
+                    isFavorite={favIds ? favIds.has(it._id || it.id) : false}
+                    onToggleFavorite={onToggleFavorite}
+                    onRemove={onRemove}
+                    onLearnMore={onLearnMore}
                 />
             ))}
         </ul>

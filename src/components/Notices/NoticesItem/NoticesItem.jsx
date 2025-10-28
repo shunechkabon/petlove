@@ -12,7 +12,12 @@ const NoticesItem = ({
     species,
     category,
     comment,
-    price
+    price,
+    mode = "catalog",
+    isFavorite = false,
+    onToggleFavorite,
+    onRemove,
+    onLearnMore,
 }) => {
     const formattedBirthday = birthday
         ? new Date(birthday)
@@ -24,9 +29,18 @@ const NoticesItem = ({
             .replaceAll("/", ".")
         : "—";
     
+    const handleLearnMore = () => onLearnMore?.(id);
+    const handleToggleFav = () => onToggleFavorite?.(id);
+    const handleRemoveFav = () => onRemove?.(id);
+    
     return (
         <li id={id} className={s.item}>
-            <img src={imgURL} loading="lazy" className={s.img} alt={title || name || "Pet"} />
+            <img
+                src={imgURL}
+                loading="lazy"
+                className={s.img}
+                alt={title || name ? `${title || name}` : "Pet photo"}
+            />
 
             <div className={s.content}>
                 <div className={s.head}>
@@ -68,16 +82,44 @@ const NoticesItem = ({
                 {comment ? <p className={s.text}>{comment}</p> : null}
                 <p className={s.price}>{price ? `$${price}` : "Free"}</p>
                 
-                <div className={s.btn}>
-                    <button className={s.btnMore} type="button">Learn more</button>
-                    <button className={s.btnFav} type="button">
-                        <Icon
-                            name="heart"
-                            width="var(--logo-icon-w)"
-                            height="var(--logo-icon-h)"
-                            className={s.iconFav}
-                        />
+                <div className={s.btns}>
+                    <button
+                        className={s.btnMore}
+                        type="button"
+                        onClick={handleLearnMore}
+                    >
+                        Learn more
                     </button>
+
+                    {mode === "catalog" && (
+                        <button
+                            type="button"
+                            className={`${s.btnFav} ${isFavorite ? s.filled : ""}`}
+                            aria-pressed={isFavorite}
+                            aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+                            onClick={handleToggleFav}
+                        >
+                            <Icon
+                                name="heart"
+                                width="var(--logo-icon-w)"
+                                height="var(--logo-icon-h)"
+                                className={s.iconFav}
+                            />
+                        </button>
+                    )}
+
+                    {mode === "favorites" && (
+                        <button
+                            type="button"
+                            className={s.btnTrash}
+                            aria-label="Remove from favorites"
+                            onClick={handleRemoveFav}
+                        >
+                            <Icon name="trash" width="var(--logo-icon-w)" height="var(--logo-icon-h)" />
+                        </button>
+                    )}
+
+                    {/* mode === "viewed" — no rigth btn */}
                 </div>
             </div>
         </li>

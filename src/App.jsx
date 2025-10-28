@@ -41,7 +41,7 @@ function App() {
         <Route
           path="/profile"
           element={
-            <PrivateRoute>
+            <PrivateRoute redirectTo="/login">
               <ProfilePage />
             </PrivateRoute>
           } />

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../../../redux/auth/slice";
 import Nav from "../Nav/Nav";
 import AuthNav from "../AuthNav/AuthNav";
-import LogOutBtn from "../LogOutBtn/LogOutBtn";
+import LogOutBtn from "../../Auth/LogOutBtn/LogOutBtn";
 import Icon from "../../Icon/Icon";
 import s from "./Burger.module.css";
 
