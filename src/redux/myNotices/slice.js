@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, createSelector } from "@reduxjs/toolkit";
 import { getCurrentFull, removeFavoriteNotice, addFavoriteNotice } from "../../api/users";
 
 export const fetchFavorites = createAsyncThunk(
@@ -23,10 +23,12 @@ export const fetchViewed = createAsyncThunk(
 
 export const addFavorite = createAsyncThunk(
     "my/addFavorite",
-    async (noticeId, { rejectWithValue }) => {
+    async (arg, { rejectWithValue }) => {
         try {
-            await addFavoriteNotice(noticeId);
-            return noticeId;
+            const id = typeof arg === "string" ? arg : arg?.id;
+            await addFavoriteNotice(id);
+            const item = typeof arg === "object" ? arg?.item : null;
+            return { id, item };
         } catch (e) { return rejectWithValue(e.message); }
     }
 );
@@ -75,11 +77,12 @@ const myNoticesSlice = createSlice({
             .addCase(fetchViewed.rejected, rejected);
         
         b.addCase(addFavorite.pending, (st) => { st.error = null; })
-            .addCase(addFavorite.fulfilled, (st, { payload: id }) => {
+            .addCase(addFavorite.fulfilled, (st, { payload }) => {
                 st.isLoading = false;
+                const { id, item } = payload || {};
                 const exists = st.favorites.items.some((x) => x._id === id || x.id === id);
-                if (!exists) {
-                    st.favorites.items.push({ _id: id });
+                if (!exists && item) {
+                    st.favorites.items.push({ ...(item._id ? item : { ...item, _id: id }) });
                 }
             })
             .addCase(addFavorite.rejected, rejected);
@@ -94,14 +97,19 @@ const myNoticesSlice = createSlice({
 });
 
 export const { setTab, reset } = myNoticesSlice.actions;
+const _selectIsLoggedIn = (s) => s.auth?.isLoggedIn;
+const _selectFavItems   = (s) => s.myNotices.favorites?.items || [];
 
 export const selectMy = (s) => s.myNotices;
 export const selectTab = (s) => s.myNotices.tab;
 export const selectFav = (s) => s.myNotices.favorites;
-export const selectFavIds = (s) => {
-    const list = s.myNotices.favorites?.items || [];
-    return new Set(list.map(x => x._id || x.id));
-};
+export const selectFavIds = createSelector(
+    [_selectIsLoggedIn, _selectFavItems],
+    (isLoggedIn, items) => {
+        if (!isLoggedIn) return new Set();
+        return new Set(items.map(x => x._id || x.id));
+    }
+);
 export const selectViewed = (s) => s.myNotices.viewed;
 export const selectActiveList = (s) =>
     s.myNotices.tab === "favorites" ? s.myNotices.favorites : s.myNotices.viewed;

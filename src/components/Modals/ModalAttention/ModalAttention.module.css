@@ -1,0 +1,109 @@
+.modal {
+    padding: 40px 20px;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.emojiContainer {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--color-accent-light);
+    padding: 18px;
+    align-content: center;
+    justify-self: center;
+    margin-bottom: 20px;
+}
+
+.emoji {
+    width: 44px;
+    height: 44px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 20px;
+    color: var(--color-accent);
+}
+
+.text {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    width: 132px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    transition: background-color .3s ease;
+}
+
+.btnLogIn {
+    background-color: var(--color-accent);
+    color: var(--color-text-secondary);
+}
+
+.btnLogIn:hover {
+    background-color: var(--color-accent-hover);
+}
+
+.btnReg {
+    background-color: var(--color-accent-light);
+    color: var(--color-accent);
+}
+
+.btnReg:hover {
+    background-color: var(--color-accent-light-hover);
+}
+
+@media screen and (min-width:768px) {
+    .modal {
+        padding: 60px;
+        width: 466px;
+    }
+
+    .title {
+        font-size: 24px;
+        line-height: 1.15;
+    }
+
+    .text {
+        margin-bottom: 28px;
+    }
+
+    .btn {
+        width: 140px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+
+        font-size: 16px;
+    }
+}
