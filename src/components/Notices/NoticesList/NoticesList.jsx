@@ -8,14 +8,17 @@ const NoticesList = ({
     mode = "catalog",
     favIds,
     onToggleFavorite,
-    onLearnMore 
+    onLearnMore,
+    className = "",
+    itemClassName = ""
 }) => {
     if (!items.length) return <p>No results.</p>;
 
     return (
-        <ul className={s.list}>
+        <ul className={`${s.list} ${className}`}>
             {items.map((it) => (
                 <NoticesItem
+                    className={itemClassName}
                     key={it.id || it._id}
                     id={it.id || it._id}
                     imgURL={it.imgURL}

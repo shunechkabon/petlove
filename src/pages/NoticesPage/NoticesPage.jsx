@@ -10,12 +10,14 @@ import {
     selectFavIds,
     selectMyLoading
 } from "../../redux/myNotices/slice";
+import toast from "react-hot-toast";
 import Title from "../../components/Title/Title";
 import Pagination from "../../components/Pagination/Pagination";
 import NoticesList from "../../components/Notices/NoticesList/NoticesList";
 import NoticesFilters from "../../components/Notices/NoticesFilters/NoticesFilters";
 import ModalNotice from "../../components/Modals/ModalNotice/ModalNotice";
 import ModalAttention from "../../components/Modals/ModalAttention/ModalAttention";
+import ModalCongrats from "../../components/Modals/ModalCongrats/ModalCongrats";
 import s from "./NoticesPage.module.css";
 
 const DEFAULT_LIMIT = 6;
@@ -32,6 +34,7 @@ const NoticesPage = () => {
     const [attentionOpen, setAttentionOpen] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
     const [modalItem, setModalItem] = useState(null);
+    const [congratsOpen, setCongratsOpen] = useState(false);
 
     useEffect(() => {
         dispatch(fetchNotices());
@@ -40,17 +43,26 @@ const NoticesPage = () => {
         query, category, sex, species, location, sort, limit
     ]);
 
-    const handleToggleFavorite = (id) => {
+    const handleToggleFavorite = async (id) => {
         if (!isLoggedIn) {
             setAttentionOpen(true);
             return;
         }
         if (isFavLoading) return;
-        if (favIds.has(id)) {
+
+        const isFav = favIds.has(id);
+        if (isFav) {
             dispatch(removeFavorite(id));
-        } else {
-            const card = items.find(it => (it._id || it.id) === id);
-            dispatch(addFavorite({ id, item: card }));
+            return;
+        }
+        const card = items.find(it => (it._id || it.id) === id);
+        const hadNone = favIds.size === 0;
+
+        try {
+            await dispatch(addFavorite({ id, item: card })).unwrap();
+            if (hadNone) setCongratsOpen(true);
+        } catch (e) {
+            toast.error(e);
         }
     };
 
@@ -58,8 +70,8 @@ const NoticesPage = () => {
         const card = items.find((it) => (it._id || it.id) === id);
         if (isLoggedIn) {
             try { await getNoticeById(id); }
-            catch {
-                // ignore error
+            catch (e) {
+                toast.error(e);
             }
         }
         setModalItem(card || null);
@@ -93,6 +105,7 @@ const NoticesPage = () => {
                 }
 
                 <ModalAttention open={attentionOpen} onClose={() => setAttentionOpen(false)} />
+                <ModalCongrats open={congratsOpen} onClose={() => setCongratsOpen(false)} />
 
                 {!isLoading && !error && totalPages > 1 && (
                     <div className={s.pagination}>

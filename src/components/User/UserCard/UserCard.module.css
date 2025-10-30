@@ -1,4 +1,5 @@
 .card {
+    flex-shrink: 0;
     max-width: 335px;
     width: 100%;
     margin: 0 auto;
@@ -18,6 +19,10 @@
 
 @media screen and (min-width: 1280px) {
     .card {
+        margin: 0;
+        position: sticky;
+        top: 32px;
         width: 520px;
+        height: fit-content;
     }
 }

@@ -14,7 +14,7 @@ import s from "./MyNotices.module.css";
 const Empty = () => (
     <div className={s.empty}>
         <p>
-            Oops, <span className={s.emptySpan}>looks like there aren`t any furries</span> on our adorable page yet.
+            Oops, <span className={s.emptySpan}>looks like there aren't any furries</span> on our adorable page yet.
             Do not worry! View your pets on the "find your favorite pet" page and add them to your favorites.
         </p>
     </div>
@@ -86,6 +86,8 @@ const MyNotices = () => {
 
             {!isLoading && list.items.length > 0 && (
                 <NoticesList
+                    className={s.list}
+                    itemClassName = {s.item}
                     items={list.items}
                     mode={tab === "favorites" ? "favorites" : "viewed"}
                     showRemove={tab === "favorites"}

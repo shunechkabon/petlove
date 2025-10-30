@@ -1,0 +1,180 @@
+.modal {
+    padding: 40px 28px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgContainer {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.badge {
+    position: absolute;
+    left: -2px;
+    top: 0;
+    padding: 8px 14px;
+    border-radius: 30px;
+    background-color: var(--color-accent-light);
+    color: var(--color-accent);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.33;
+    letter-spacing: -0.02em;
+    text-transform: capitalize;
+}
+
+.img {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 10px;
+}
+
+.features {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 27px;
+    margin-bottom: 16px;
+    margin-top: 24px;
+}
+
+.featureItem {
+    height: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.featureName {
+    color: rgba(38, 38, 38, 0.50);
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+}
+
+.featureValue {
+    text-transform: capitalize;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.16;
+    letter-spacing: -0.02em;
+}
+
+.text {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+    margin-bottom: 32px;
+}
+
+.price {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 20px;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    width: 134px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    border-radius: 30px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+    transition: background-color .3s ease;
+}
+
+.btnFav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: var(--color-accent);
+    color: var(--color-text-secondary);
+}
+
+.btnFav:hover {
+    background-color: var(--color-accent-hover);
+}
+
+.btnContact {
+    background-color: var(--color-accent-light);
+    color: var(--color-accent);
+}
+
+.btnContact:hover {
+    background-color: var(--color-accent-light-hover);
+}
+
+.disabled {
+    opacity: 60%;
+    cursor: not-allowed;
+}
+
+@media screen and (min-width:768px) {
+    .modal {
+        padding: 40px 72px;
+        width: 474px;
+    }
+
+    .imgContainer {
+        margin-bottom: 16px;
+    }
+    
+    .badge {
+        left: 4px;
+        font-size: 14px;
+        line-height: 1.28;
+    }
+    
+    .img {
+        height: 150px;
+        width: 150px;
+    }
+
+    .title {
+        font-size: 18px;
+        line-height: 1.33;
+    }
+
+    .features {
+        margin-top: 20px;
+    }
+    
+    .price {
+        font-size: 18px;
+        line-height: 1.33;
+    }
+    
+    .btn {
+        width: 160px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
+}

@@ -18,6 +18,7 @@ const NoticesItem = ({
     onToggleFavorite,
     onRemove,
     onLearnMore,
+    className = ""
 }) => {
     const formattedBirthday = birthday
         ? new Date(birthday)
@@ -34,7 +35,7 @@ const NoticesItem = ({
     const handleRemoveFav = () => onRemove?.(id);
     
     return (
-        <li id={id} className={s.item}>
+        <li id={id} className={`${s.item} ${className}`}>
             <img
                 src={imgURL}
                 loading="lazy"
@@ -115,7 +116,12 @@ const NoticesItem = ({
                             aria-label="Remove from favorites"
                             onClick={handleRemoveFav}
                         >
-                            <Icon name="trash" width="var(--logo-icon-w)" height="var(--logo-icon-h)" />
+                            <Icon
+                                name="trash"
+                                width="var(--logo-icon-w)"
+                                height="var(--logo-icon-h)"
+                                className={s.iconTrash}
+                            />
                         </button>
                     )}
 

@@ -1,0 +1,28 @@
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.stars {
+    display: flex;
+    gap: 4px;
+}
+
+.star {
+    transition: color 0.3s ease;
+}
+
+.filled {
+    color: var(--color-accent);
+}
+
+.empty {
+    color: rgba(244, 244, 244, 1);
+}
+
+.value {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.42;
+}

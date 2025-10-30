@@ -110,11 +110,12 @@
 }
 
 .btnMore {
-    width: 231px;
+    width: 100%;
+    padding-top: 14px;
+    padding-bottom: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    /* padding: 14px 80px; */
     border-radius: 30px;
     background-color: var(--color-accent);
     border: none;
@@ -131,7 +132,8 @@
     background-color: var(--color-accent-hover);
 }
 
-.btnFav {
+.btnFav,
+.btnTrash {
     width: 46px;
     height: 46px;
     padding: 14px;
@@ -141,7 +143,8 @@
     transition: background-color 0.3s ease;
 }
 
-.btnFav:hover {
+.btnFav:hover,
+.btnTrash:hover {
     background-color: var(--color-accent-light-hover);
 }
 
@@ -151,6 +154,12 @@
     --icon-stroke: var(--color-accent);
     --icon-stroke-w: 1.5;
     --icon-fill: none;
+}
+
+.iconTrash {
+    --logo-icon-w: 18px;
+    --logo-icon-h: 18px;
+    color: var(--color-accent);
 }
 
 .filled .iconFav {
@@ -176,8 +185,6 @@
     }
 
     .btnMore {
-        width: 236px;
-        /* padding: 14px 78px; */
         font-size: 16px;
     }
 
@@ -191,10 +198,5 @@
 @media screen and (min-width: 1280px) {
     .item {
         width: 363px;
-    }
-    
-    .btnMore {
-        width: 257px;
-        /* padding: 14px 89px; */
     }
 }

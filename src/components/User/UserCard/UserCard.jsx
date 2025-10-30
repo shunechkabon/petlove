@@ -6,7 +6,7 @@ import s from "./UserCard.module.css";
 
 const UserCard = () => {
     return (
-        <aside aria-label="User card" className={s.card}>
+        <div className={s.card}>
             <div>
                 <span className={s.badge}>User</span>
                 <EditUserBtn />
@@ -17,7 +17,7 @@ const UserCard = () => {
             <PetsBlock />
 
             <LogOutBtn />
-        </aside>
+        </div>
     );
 };
 export default UserCard;
