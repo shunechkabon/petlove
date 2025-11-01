@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { setAuthHeader, clearAuthHeader } from "../../api/client";
+import { editCurrent, getCurrentFull } from "../../api/users";
 import { setCredentials, logout } from "./slice";
 
 // REGISTER
@@ -64,6 +65,7 @@ export const logoutUser = createAsyncThunk("auth/logout", async (_, thunkAPI) =>
     }
 });
 
+// Refresh
 export const refreshUser = createAsyncThunk(
     "auth/refreshUser",
     async (_, thunkAPI) => {
@@ -77,6 +79,28 @@ export const refreshUser = createAsyncThunk(
         } catch (err) {
             const message =
                 err.response?.data?.message || "Failed to refresh user";
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
+// EDIT USER
+export const updateUser = createAsyncThunk(
+    "auth/updateUser",
+    async (payload, thunkAPI) => {
+        try {
+            const state = thunkAPI.getState();
+            const token = state.auth.token || localStorage.getItem("token");
+            if (token) setAuthHeader(token);
+
+            await editCurrent(payload);
+            const full = await getCurrentFull();
+
+            const fullData = { user: full, token };
+            thunkAPI.dispatch(setCredentials(fullData));
+            return fullData;
+        } catch (err) {
+            const message = err?.response?.data?.message || "Update failed. Try again.";
             return thunkAPI.rejectWithValue(message);
         }
     }

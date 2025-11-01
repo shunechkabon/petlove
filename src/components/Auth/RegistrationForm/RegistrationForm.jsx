@@ -14,10 +14,12 @@ const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
 const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
 const schema = Yup.object({
-    name: Yup.string().trim()
+    name: Yup.string()
+        .trim()
         .min(3, "Name must be at least 3 characters")
         .required("Name is required"),
-    email: Yup.string().trim()
+    email: Yup.string()
+        .trim()
         .matches(emailRegex, "Invalid email format")
         .required("Email is required"),
     password: Yup.string()
