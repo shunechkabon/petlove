@@ -1,21 +1,12 @@
-import { useState } from "react";
-import ModalEditUser from "../../Modals/ModalEditUser/ModalEditUser";
 import Icon from "../../Icon/Icon";
 import s from "./EditUserBtn.module.css";
 
-const EditUserBtn = () => {
-    const [open, setOpen] = useState(false);
-
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-    
+const EditUserBtn = ({ loading, onClick }) => {
     return (
         <>
-            <button type="button" className={s.btn} onClick={handleOpen}>
+            <button type="button" className={s.btn} onClick={onClick} disabled={loading}>
                 <Icon name="edit" width={18} height={18} className={s.icon} />
             </button>
-
-            {open && <ModalEditUser onClose={handleClose} />}
         </>
     );
 };

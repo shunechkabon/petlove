@@ -8,6 +8,33 @@
     border-radius: 30px;
 }
 
+.top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.user {
+    background-color: var(--color-accent);
+    border-radius: 30px;
+    padding: 10px 14px;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.badge {
+    color: var(--color-text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.28;
+    letter-spacing: -0.02em;
+}
+
+.icon {
+    color: var(--color-text-secondary);
+}
+
 @media screen and (min-width: 768px) {
     .card {
         max-width: none;

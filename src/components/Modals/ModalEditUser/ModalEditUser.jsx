@@ -1,18 +1,17 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import { updateUser } from "../../../redux/auth/operations";
-import { selectUser } from "../../../redux/auth/slice";
 import Modal from "../Modal";
 import Icon from "../../Icon/Icon";
 import s from "./ModalEditUser.module.css";
 
 const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-const avatarRegex = /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/;
+const avatarRegex = /^https?:\/\/.*\.(?:png|jpg|jpeg|gif|bmp|webp)$/i;
 const phoneRegex = /^\+38\d{10}$/;
 
 const optional = (s) =>
@@ -41,33 +40,40 @@ const schema = Yup.object({
     phone: optional(
         Yup.string()
             .trim()
-            .matches(phoneRegex, "Phone must start with +38 and contain digits only")
+            .test(
+                "is-valid-or-default",
+                "Phone must start with +38 and contain digits only",
+                (value) => !value || value === "+380" || phoneRegex.test(value)
+            )
             .notRequired(),
     ),
 });
 
-const ModalEditUser = ({ onClose }) => {
+const ModalEditUser = ({ onClose, initial }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const user = useSelector(selectUser);
-    const [confirmedUrl, setConfirmedUrl] = useState(user?.avatar || "");
-    const [showPreview, setShowPreview] = useState(Boolean(user?.avatar));
 
     const {
         register,
         handleSubmit,
         setFocus,
         watch,
+        reset,
         formState: { errors, isSubmitting },
     } = useForm({
         resolver: yupResolver(schema),
-        defaultValues: {
-            avatar: user?.avatar || "",
-            name: user?.name || "",
-            email: user?.email || "",
-            phone: user?.phone || "+380",
-        },
+        defaultValues: initial ?? { avatar: "", name: "", email: "", phone: "+380" },
     });
+
+    const [confirmedUrl, setConfirmedUrl] = useState(initial?.avatar || "");
+    const [showPreview, setShowPreview] = useState(Boolean(initial?.avatar));
+
+    useEffect(() => {
+        if (!initial) return;
+        reset(initial);
+        setConfirmedUrl(initial.avatar || "");
+        setShowPreview(Boolean(initial.avatar));
+    }, [initial, reset]);
 
     const avatarURL = watch("avatar");
     const candidate = useMemo(() => avatarURL?.trim() || "", [avatarURL]);
@@ -90,16 +96,20 @@ const ModalEditUser = ({ onClose }) => {
     };
 
     const same = (a = "", b = "") => a.trim() === b.trim();
+    const normPhone = (v) => {
+        const s = (v || "").replace(/\s+/g, "");
+        return s === "+380" ? "" : s;
+    };
 
-    const isOnlyAvatarCleared = (formData, user) => {
-        const clearedAvatar = !formData.avatar?.trim() && !!user?.avatar;
-        const sameName = same(formData.name, user?.name);
-        const sameEmail = same(formData.email, user?.email);
-        const samePhone = same(formData.phone, user?.phone?.replace(/\s+/g, ""));
+    const isOnlyAvatarCleared = (formData, initial) => {
+        const clearedAvatar = !formData.avatar?.trim() && !!initial?.avatar;
+        const sameName = same(formData.name, initial?.name);
+        const sameEmail = same(formData.email, initial?.email);
+        const samePhone = normPhone(formData.phone) === normPhone(initial?.phone);
         return clearedAvatar && sameName && sameEmail && samePhone;
     };
 
-    const buildPayload = (data, user) => {
+    const buildPayload = (data, initial) => {
         const norm = (k, v) => (k === "phone" ? v.replace(/\s+/g, "") : v);
         const entries = Object.entries(data).map(([k, v]) => [
             k,
@@ -108,7 +118,7 @@ const ModalEditUser = ({ onClose }) => {
 
         const out = {};
         const fieldAvatar = entries.find(([k]) => k === "avatar")?.[1] ?? "";
-        const prev = user?.avatar || "";
+        const prev = initial?.avatar || "";
 
         if (fieldAvatar && fieldAvatar !== prev) {
             out.avatar = fieldAvatar;
@@ -116,17 +126,17 @@ const ModalEditUser = ({ onClose }) => {
 
         for (const [k, v] of entries) {
             if (k === "avatar") continue;
-            if (v === "" || v == null) continue;      
+            if (v === "" || v == null) continue;
+            if (k === "phone" && (v === "+380" || v === "")) continue;
             const nv = norm(k, v);
-            if (nv !== (user?.[k] ?? "")) out[k] = nv; 
+            if (nv !== (initial?.[k] ?? "")) out[k] = nv; 
         }
         return out;
     };
 
     const onSubmit = async (formData) => {
-        const payload = buildPayload(formData, user);
-        if (Object.keys(payload).length === 0 && isOnlyAvatarCleared(formData, user)) {
-            // локально скрываем превью, закрываем модалку, уходим на профиль
+        const payload = buildPayload(formData, initial);
+        if (Object.keys(payload).length === 0 && isOnlyAvatarCleared(formData, initial)) {
             setConfirmedUrl("");
             setShowPreview(false);
             toast.success("Profile updated locally");
@@ -151,7 +161,7 @@ const ModalEditUser = ({ onClose }) => {
     };
 
     return (
-        <Modal isOpen={true} onClose={onClose} ariaLabel="Edit user info">
+        <Modal className={s.modal} isOpen={true} onClose={onClose} ariaLabel="Edit user info">
             <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
                 <h2 className={s.title}>Edit information</h2>
 
@@ -206,7 +216,7 @@ const ModalEditUser = ({ onClose }) => {
                 </div>
 
                 <button type="submit" className={s.submitBtn} disabled={isSubmitting}>
-                    {isSubmitting ? "Saving..." : "Go to profile"}
+                    {isSubmitting ? "Saving..." : "Save"}
                 </button>
             </form>
         </Modal>
