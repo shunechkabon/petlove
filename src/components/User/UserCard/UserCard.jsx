@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { selectUser } from "../../../redux/auth/slice";
-import { getCurrentFull } from "../../../api/users";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { selectUser, selectIsLoggedIn } from "../../../redux/auth/slice";
+import { fetchUserFull } from "../../../redux/auth/operations";
 import EditUserBtn from "../EditUserBtn/EditUserBtn";
 import UserBlock from "../UserBlock/UserBlock";
 import PetsBlock from "../PetsBlock/PetsBlock";
@@ -11,33 +11,32 @@ import Icon from "../../Icon/Icon";
 import s from "./UserCard.module.css";
 
 const UserCard = () => {
-    const shortUser = useSelector(selectUser);
+    const dispatch = useDispatch();
+    const isLoggedIn = useSelector(selectIsLoggedIn);
+    const user = useSelector(selectUser);
+
     const [open, setOpen] = useState(false);
     const [initial, setInitial] = useState(null);
     const [loading, setLoading] = useState(false);
 
+    useEffect(() => {
+        if (!isLoggedIn) return;
+        if (user?.phone && (user?.avatar || user?.avatarURL)) return;
+        dispatch(fetchUserFull());
+    }, [isLoggedIn, user?.phone, user?.avatar, user?.avatarURL, dispatch]);
+
     const onEdit = async () => {
         if (loading) return;
         setLoading(true);
-        try {
-            const full = await getCurrentFull();
-            setInitial({
-                avatar: full.avatar || "",
-                name: full.name || "",
-                email: full.email || "",
-                phone: full.phone || "+380",
-            });
-        } catch {
-            setInitial({
-                avatar: shortUser?.avatar || "",
-                name: shortUser?.name || "",
-                email: shortUser?.email || "",
-                phone: shortUser?.phone || "+380",
-            });
-        } finally {
-            setLoading(false);
-            setOpen(true);
-        }
+        const full = user || {};
+        setInitial({
+            avatar: full.avatar || "",
+            name: full.name || "",
+            email: full.email || "",
+            phone: full.phone || "+380",
+        });
+        setLoading(false);
+        setOpen(true);
     };
     
     return (
@@ -47,10 +46,10 @@ const UserCard = () => {
                     <span className={s.badge}>User</span>
                     <Icon className={s.icon} name="user" width={18} height={18}/>
                 </div>
-                <EditUserBtn loading={loading} onClick={onEdit} />
+                <EditUserBtn className={s.editBtn} loading={loading} onClick={onEdit} />
             </div>
 
-            <UserBlock />
+            <UserBlock onUploadPhoto={onEdit} />
             <PetsBlock />
             <LogOutBtn />
 

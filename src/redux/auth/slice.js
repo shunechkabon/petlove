@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { register, login, logoutUser, refreshUser, updateUser } from "./operations";
+import { register, login, logoutUser, refreshUser, updateUser, fetchUserFull } from "./operations";
 
 const initialState = {
     user: null,
@@ -91,10 +91,22 @@ const authSlice = createSlice({
             })
             .addCase(updateUser.fulfilled, (s, { payload }) => {
                 s.isLoading = false;
-                s.user = payload.user;
+                s.user = { ...(s.user || {}), ...(payload?.user || payload || {}) };
             })
             .addCase(updateUser.rejected, (s, { payload }) => {
                 s.isLoading = false; s.error = payload || "Update failed";
+            })
+        
+            //FETCH user full
+            .addCase(fetchUserFull.pending, (s) => {
+                s.isLoading = true; s.error = null;
+            })
+            .addCase(fetchUserFull.fulfilled, (s, { payload }) => {
+                s.isLoading = false;
+                s.user = { ...(s.user || {}), ...(payload || {}) };
+            })
+            .addCase(fetchUserFull.rejected, (s, { payload }) => {
+                s.isLoading = false; s.error = payload || "Fetch full failed";
             });
     },
 });

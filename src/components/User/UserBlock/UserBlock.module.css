@@ -1,0 +1,161 @@
+.block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+    margin-top: 38px;
+}
+
+.avatarDef {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.iconContainer {
+    width: 94px;
+    height: 94px;
+    border-radius: 50%;
+    background-color: var(--color-accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    color: var(--color-accent);
+}
+
+.uploadBtn {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.33;
+    letter-spacing: -0.02em;
+    text-decoration: underline;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 94px;
+    height: 94px;
+    border-radius: 50%;
+    background-color: var(--color-accent-light);
+    margin-bottom: 28px;
+    margin-top: 20px;
+}
+
+.avatarImg {
+    width: 94px;
+    height: 94px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.info,
+.inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 10px;
+}
+
+.input {
+    width: 100%;
+    height: 42px;
+    border-radius: 30px;
+    background-color: transparent;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.28;
+    letter-spacing: -0.03em;
+}
+
+.empty {
+    border: 1px solid rgba(38, 38, 38, 0.15);
+}
+
+.filled {
+    border: 1px solid var(--color-accent);
+}
+
+@media screen and (min-width: 768px) {
+    .block {
+        margin-top: 0;
+    }
+
+    .avatarDef {
+        margin-bottom: 20px;
+    }
+    
+    .iconContainer {
+        width: 110px;
+        height: 110px;
+    }
+
+    .icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .uploadBtn {
+        font-size: 14px;
+    }
+
+    .avatar {
+        margin-top: 0;
+        width: 110px;
+        height: 110px;
+        margin-bottom: 20px;
+    }
+    
+    .avatarImg {
+        width: 110px;
+        height: 110px;
+    }
+    
+    .title {
+        font-size: 18px;
+    }
+
+    .inputs {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+    
+    .input {
+        width: 305px;
+        height: 52px;
+        padding: 16px;
+        font-size: 16px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .avatar {
+        margin-bottom: 28px;
+    }
+    
+    .inputs {
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+    
+    .input {
+        width: 100%;
+        height: 52px;
+    }
+}

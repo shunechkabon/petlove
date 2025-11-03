@@ -6,12 +6,7 @@
     padding: 18px 20px 40px;
     background-color: var(--color-bg-secondary);
     border-radius: 30px;
-}
-
-.top {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+    position: relative;
 }
 
 .user {
@@ -21,6 +16,9 @@
     display: flex;
     gap: 4px;
     align-items: center;
+    position: absolute;
+    top: 18px;
+    left: 20px;
 }
 
 .badge {
@@ -35,12 +33,28 @@
     color: var(--color-text-secondary);
 }
 
+.editBtn {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+}
+
 @media screen and (min-width: 768px) {
     .card {
         max-width: none;
         width: 704px;
         padding: 40px;
         border-radius: 60px;
+    }
+
+    .user {
+        top: 40px;
+        left: 40px;
+    }
+
+    .editBtn {
+        top: 40px;
+        right: 40px;
     }
 }
 
