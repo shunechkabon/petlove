@@ -51,7 +51,7 @@ const UserCard = () => {
 
             <UserBlock onUploadPhoto={onEdit} />
             <PetsBlock />
-            <LogOutBtn />
+            <LogOutBtn className={s.logOutBtn} />
 
             {open && initial && (
                 <ModalEditUser initial={initial} onClose={() => setOpen(false)} />

@@ -6,6 +6,7 @@ import noticesReducer from "./notices/slice";
 import dictionariesReducer from "./dictionaries/slice";
 import authReducer from "./auth/slice";
 import myNoticesReducer from "./myNotices/slice";
+import petsReducer from "./pets/slice";
 
 export const store = configureStore({
     reducer: {
@@ -16,5 +17,6 @@ export const store = configureStore({
         friends: friendsReducer,
         auth: authReducer,
         myNotices: myNoticesReducer,
+        pets: petsReducer,
     },
 });

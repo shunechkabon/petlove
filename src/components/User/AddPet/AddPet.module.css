@@ -1,0 +1,39 @@
+.link {
+    width: 104px;
+    height: 38px;
+    background-color: var(--color-accent);
+    border-radius: 30px;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: background-color .3s ease;
+}
+
+.link:hover {
+    background-color: var(--color-accent-hover);
+}
+
+.text {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.28;
+    letter-spacing: -0.03em;
+    color: var(--color-text-secondary);
+}
+
+.icon {
+    color: var(--color-text-secondary);
+}
+
+@media screen and (min-width: 768px) {
+    .link {
+        width: 118px;
+        height: 40px;
+        padding: 11px 20px;
+    }
+    
+    .text {
+        font-size: 16px;
+    }
+}

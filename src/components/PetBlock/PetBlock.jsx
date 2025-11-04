@@ -1,11 +1,22 @@
 import s from "./PetBlock.module.css";
 
-const PetBlock = ({ image, className = "", alt = "Pet", icon, name, birthday, description }) => {
+const PetBlock = ({
+    image,
+    imgClassName = "",
+    className = "",
+    alt = "Pet",
+    icon,
+    name,
+    birthday,
+    description,
+    showCard = true
+}) => {
     return (
-        <div className={s.container}>
-            <img src={image} alt={`${alt} ${name}`} className={`${s.img} ${className}`} />
+        <div className={`${s.container} ${className}`}>
+            <img src={image} alt={`${alt} ${name}`} className={`${s.img} ${imgClassName}`} />
 
-            <div className={s.card}>
+            {showCard && (
+                <div className={s.card}>
                 <div className={s.icon}>
                     <img src={icon} alt={alt}/>
                 </div>
@@ -18,7 +29,8 @@ const PetBlock = ({ image, className = "", alt = "Pet", icon, name, birthday, de
                     </div>
                     <p className={s.text}>{description}</p>
                 </div>
-            </div>
+                </div>
+            )}
         </div>
     );
 };

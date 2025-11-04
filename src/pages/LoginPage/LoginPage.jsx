@@ -12,7 +12,7 @@ const LoginPage = () => {
             <div className={s.container}>
                 <PetBlock
                     image={dogImg}
-                    className={s.dogImg}
+                    imgClassName={s.dogImg}
                     alt="Dog"
                     icon={emojiDog}
                     name="Rich"
