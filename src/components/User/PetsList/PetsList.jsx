@@ -15,7 +15,7 @@ const PetsList = ({ items = [] }) => {
                     birthday={it.birthday}
                     species={it.species}
                     sex={it.sex}
-                    imgUrl={it.imgUrl}
+                    imgURL={it.imgURL}
                 />
             ))}
         </ul>

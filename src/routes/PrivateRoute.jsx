@@ -1,15 +1,16 @@
 import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
-import { selectIsLoggedIn } from "../redux/auth/slice";
+import { selectIsLoggedIn, selectAuthRefreshing } from "../redux/auth/slice";
 
-const PrivateRoute = ({ children }) => {
+const PrivateRoute = ({ children, redirectTo = "/login" }) => {
     const isLoggedIn = useSelector(selectIsLoggedIn);
+    const isRefreshing = useSelector(selectAuthRefreshing);
     const location = useLocation();
 
-    if (!isLoggedIn) {
-        return <Navigate to="/login" replace state={{ from: location }} />;
-    }
-    return children;
+    if (isRefreshing) return null;
+
+    return isLoggedIn ? children : 
+        <Navigate to={redirectTo} replace state={{ from: location }} />;
 };
 
 export default PrivateRoute;
