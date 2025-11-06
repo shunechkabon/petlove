@@ -5,6 +5,7 @@ import { store } from './redux/store';
 import { BrowserRouter } from 'react-router-dom';
 import 'virtual:svg-icons-register';
 import 'modern-normalize';
+import "react-datepicker/dist/react-datepicker.css"; 
 import './index.css';
 import App from './App.jsx';
 

@@ -9,8 +9,9 @@ const PrivateRoute = ({ children, redirectTo = "/login" }) => {
 
     if (isRefreshing) return null;
 
-    return isLoggedIn ? children : 
-        <Navigate to={redirectTo} replace state={{ from: location }} />;
+    return isLoggedIn
+        ? children
+        : <Navigate to={redirectTo} replace state={{ from: location }} />;
 };
 
 export default PrivateRoute;
