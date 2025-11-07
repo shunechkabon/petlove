@@ -1,0 +1,150 @@
+.card {
+    border: 1px solid rgba(38, 38, 38, 0.1);
+    border-radius: 20px;
+    padding: 16px 46px 16px 16px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    position: relative;
+}
+
+.img {
+    width: 66px;
+    height: 66px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 152px;
+}
+
+.petTitle {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.28;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.featureItem {
+    height: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+    flex: 0 0 64px;
+}
+
+.featureName {
+    color: rgba(38, 38, 38, 0.50);
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+}
+
+.featureValue {
+    text-transform: capitalize;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.16;
+    letter-spacing: -0.02em;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.trashBtn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--color-accent-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color .2s ease;
+
+    &:hover {
+        background-color: var(--color-accent-light-hover);
+    }
+}
+
+.trashIcon {
+    color: var(--color-accent);
+}
+
+@media screen and (min-width: 768px) {
+    .card {
+        padding: 22px 46px 22px 16px;
+    }
+    
+    .img {
+        width: 74px;
+        height: 74px;
+    }
+
+    .info {
+        gap: 12px;
+    }
+
+    .trashBtn {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .trashIcon {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .card {
+        padding: 20px 62px 20px 20px;
+        gap: 24px;
+        align-items: center;
+    }
+    
+    .img {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .info {
+        width: 244px;
+    }
+
+    .features {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+    }
+
+    .featureItem {
+        flex: auto;
+        max-width: 64px;
+    }
+    
+    .trashBtn {
+        top: 20px;
+        right: 20px;
+        width: 38px;
+        height: 38px;
+    }
+}

@@ -7,9 +7,52 @@
     opacity: 60%;
 }
 
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
 @media screen and (min-width: 768px) {
     .empty {
         font-size: 16px;
         margin-bottom: 50px;
+    }
+
+    .list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .list {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+
+        max-width: 446px;
+        max-height: 320px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-right: 6px;
+        scrollbar-width: thin;
+        scroll-behavior: smooth;
+        scrollbar-color: var(--color-accent) transparent;
+    }
+
+    .list::-webkit-scrollbar {
+        width: 6px;
+    }
+    .list::-webkit-scrollbar-thumb {
+        background-color: var(--color-accent);
+        border-radius: 4px;
+    }
+    .list::-webkit-scrollbar-track {
+        background: transparent;
     }
 }

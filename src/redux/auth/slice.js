@@ -61,7 +61,6 @@ const authSlice = createSlice({
             })
             .addCase(logoutUser.fulfilled, (s) => {
                 s.isLoading = false;
-                s.user = null; s.token = null; s.isLoggedIn = false;
             })
             .addCase(logoutUser.rejected, (s, { payload }) => {
                 s.isLoading = false; s.error = payload || "Logout failed";
@@ -117,6 +116,7 @@ export const selectIsLoggedIn = (state) => state.auth.isLoggedIn;
 export const selectAuthLoading = (state) => state.auth.isLoading;
 export const selectAuthError = (state) => state.auth.error;
 export const selectAuthRefreshing = (state) => state.auth.isRefreshing;
+export const selectToken = (state) => state.auth.token;
 export const selectUser = (state) => state.auth.user;
 
 export default authSlice.reducer;

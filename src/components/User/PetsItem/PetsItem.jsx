@@ -17,15 +17,27 @@ const PetsItem = ({ id, title, name, birthday, species, sex, imgURL }) => {
             />
             <div className={s.info}>
                 <h4 className={s.petTitle}>{title}</h4>
-                <ul className={s.meta}>
-                    <li><span>Name</span> {name}</li>
-                    <li><span>Birthday</span> {birthday}</li>
-                    <li><span>Species</span> {species}</li>
-                    <li><span>Sex</span> {sex}</li>
+                <ul className={s.features}>
+                    <li className={s.featureItem}>
+                        <span className={s.featureName}>Name</span>
+                        <span className={s.featureValue}>{name}</span>
+                    </li>
+                    <li className={s.featureItem}>
+                        <span className={s.featureName}>Birthday</span>
+                        <span className={s.featureValue}>{birthday}</span>
+                    </li>
+                    <li className={s.featureItem}>
+                        <span className={s.featureName}>Species</span>
+                        <span className={s.featureValue}>{species}</span>
+                    </li>
+                    <li className={s.featureItem}>
+                        <span className={s.featureName}>Sex</span>
+                        <span className={s.featureValue}>{sex}</span>
+                    </li>
                 </ul>
             </div>
             <button type="button" className={s.trashBtn} aria-label="Delete pet" onClick={onDelete}>
-                <Icon name="trash" width={20} height={20} />
+                <Icon className={s.trashIcon} name="trash" width={16} height={16} />
             </button>
         </li>
     );

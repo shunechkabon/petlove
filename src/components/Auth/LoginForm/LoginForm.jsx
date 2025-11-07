@@ -121,7 +121,7 @@ const LoginForm = () => {
                         aria-pressed={showPassword}
                     >
                         <Icon
-                            name={showPassword ? "eye-off" : "eye"}
+                            name={showPassword ? "eye" : "eye-off"}
                             width={18}
                             height={18}
                         />

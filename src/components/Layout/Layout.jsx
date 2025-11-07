@@ -31,7 +31,7 @@ const Layout = () => {
             {isLoading ? <Loader /> : null}
 
             <main id="main-content" role="main" className="container">
-                <Suspense fallback={null}>
+                <Suspense fallback={<Loader />}>
                     <Outlet />
                 </Suspense>
             </main>

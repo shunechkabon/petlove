@@ -114,7 +114,6 @@ const AddPetForm = () => {
             sex: values.sex || "unknown",
             birthday: new Date(values.birthday).toISOString().slice(0, 10)
         };
-        console.log("ADD PET payload →", payload);
 
         try {
             await dispatch(createPet(payload)).unwrap();
