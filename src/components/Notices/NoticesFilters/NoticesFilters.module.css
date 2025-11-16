@@ -272,6 +272,7 @@
 @media screen and (min-width:768px) {
     .wrap {
         width: 704px;
+        max-width: none;
         padding: 40px 32px;
     }
     

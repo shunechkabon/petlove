@@ -171,6 +171,7 @@
 @media screen and (min-width: 768px) {
     .item {
         width: 342px;
+        max-width: none;
     }
 
     .title {
