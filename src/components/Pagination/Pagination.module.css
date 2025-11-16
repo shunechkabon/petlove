@@ -55,6 +55,26 @@
     color: var(--color-text-secondary);
 }
 
+@media screen and (max-width: 374px) {
+    .wrap {
+        gap: 8px;
+        max-width: 100%;
+    }
+
+    .nav {
+        gap: 4px;
+    }
+
+    .btn {
+        width: 32px;
+        height: 32px;
+    }
+
+    .pages {
+        gap: 6px;
+    }
+}
+
 @media screen and (min-width: 768px) {
     .wrap {
         --pag-icon-w: 7px;

@@ -1,6 +1,7 @@
 .wrap {
     background-color: var(--color-accent-light);
-    width: 335px;
+    max-width: 335px;
+    width: 100%;
     border-radius: 30px;
     padding: 20px;
     position: relative;
