@@ -65,7 +65,7 @@ const NoticesFilters = ({className = ""}) => {
                 {/* Search */}
                 <SearchField className={s.searchField} value={query} onSearch={handleSearch} />
     
-                {/* Selects */}
+                {/* Selects  */}
                 <div className={s.row}>
                     <Select
                         className={`${s.rs}`}
