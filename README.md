@@ -144,6 +144,16 @@ https://petlove.b.goit.study/api-docs/
 
 ---
 
+## 📄 Project Requirements
+
+This project was implemented based on the technical requirements provided by the GoIT educational platform.  
+You can view the detailed project specification here:
+
+🔗 **Technical Requirements**  
+https://docs.google.com/spreadsheets/d/1DmQUeGZy_oaXN6yn69ORLzou1ZQRyTMlrAqPSit_clw/edit?gid=1134921873#gid=1134921873
+
+---
+
 ## 🧭 Roadmap
 
 - [x] Full authentication flow
