@@ -101,6 +101,7 @@ The application ensures smooth UX, mobile-first responsiveness and reliable form
 
 ## 📁 Folder Structure
 
+```
 ├── public/ # static files
 ├── screenshots/ # images for README (preview screenshots)
 ├── src/
@@ -121,6 +122,7 @@ The application ensures smooth UX, mobile-first responsiveness and reliable form
 ├── package-lock.json
 ├── README.md
 └── vite.config.js
+```
 
 ## 🔧 Installation
 
