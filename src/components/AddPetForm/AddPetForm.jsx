@@ -267,6 +267,7 @@ const AddPetForm = () => {
                 </div>
             </div>
 
+            {/* Actions */}
             <div className={s.actions}>
                 <button className={s.btn} type="button" onClick={() => navigate("/profile")}>Back</button>
                 <button className={s.btn} type="submit" disabled={isSubmitting}>Submit</button>

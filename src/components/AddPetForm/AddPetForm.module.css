@@ -99,6 +99,7 @@
     border: none;
     border-radius: 30px;
     background-color: var(--color-accent-light);
+    color: var(--color-text);
     font-size: 12px;
     font-weight: 500;
     line-height: 1.33;
@@ -190,10 +191,12 @@
     border: none;
     cursor: pointer;
     padding: 0;
+    color: var(--color-text);
 }
 
 .birthdayIcon {
     transition: color .2s ease;
+    color: var(--color-text);
 }
 
 .calendarBtn:hover .birthdayIcon,
@@ -466,6 +469,7 @@
 
 .btn[type="button"] {
     background: rgba(38, 38, 38, 0.05);
+    color: var(--color-text);
 }
 
 .btn[type="button"]:hover {

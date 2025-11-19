@@ -55,6 +55,7 @@
     border: none;
     border-radius: 30px;
     background-color: var(--color-accent-light);
+    color: var(--color-text);
     font-size: 12px;
     font-weight: 500;
     line-height: 1.33;
